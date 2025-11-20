@@ -249,20 +249,30 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from "framer-motion";
 import AboutHero from '@/public/about me.png';
 import RiderImg from '@/public/nilay rider provider.png';
 
+
 /* ===== Animation presets ===== */
-const fadeUp = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+const fadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(4px)",
+  },
   show: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 1.1, ease: 'easeOut' },
+    filter: "blur(0px)",
+    transition: {
+      duration: 1.1,
+      // cubic-bezier easing – this matches "easeOut" feel, but is correctly typed
+      ease: [0.16, 1, 0.3, 1],
+    },
   },
 };
+
 
 const fadeIn = {
   hidden: { opacity: 0, filter: 'blur(4px)' },

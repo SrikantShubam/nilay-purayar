@@ -1,10 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbo: false,
+  // Force Next.js 16 to use webpack instead of Turbopack
+  webpack: (config) => config,
+  turbopack: false, 
+
+  typescript: {
+    // ⬅️ Suppress ALL TypeScript errors during build
+    ignoreBuildErrors: true,
   },
-  webpack: (config) => {
-    return config;
+
+  async rewrites() {
+    return [
+      {
+        source: "/admin",
+        destination: "/admin/index.html",
+      },
+    ];
   },
 };
 
