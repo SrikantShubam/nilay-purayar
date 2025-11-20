@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #E6D9CC;
+  --foreground: #453218;
+  --s-text: #CF6345;
 }
 
+/* Tailwind theme inline override */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-s-text: var(--s-text) !important;
+
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global base styling */
+body {
+  @apply bg-background text-foreground font-sans;
+  margin-left: 37px;
+  margin-right: 37px;
+}
+@media(max-width:480px){
+  body {
+  @apply bg-background text-foreground font-sans;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+p {
+  line-height: 1.6;
+}
+
+.tina-editor {
+  font-family: var(--font-poppins), sans-serif;
+}
+.hr{
+  /* border-l border-[#C2B5A8]/70 border-dashed rounded-full */
+  
+/* border-color: #C2B5A8 0.7 border-dashed; */
+border-top: #c2b5a8 1px dashed;
+}
+
+.hrb{
+  /* border-l border-[#C2B5A8]/70 border-dashed rounded-full */
+  
+/* border-color: #C2B5A8 0.7 border-dashed; */
+border-top: #c2b5a8 1px dashed;
+border-bottom: #c2b5a8 1px dashed;
+}
+
+.hb{
+  border-bottom: #c2b5a8 1px dashed;
 }
