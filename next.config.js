@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Force Next.js 16 to use webpack instead of Turbopack
-  webpack: (config) => config,
-  turbopack: false, 
-
+  // Ignore all TS errors during build (so framer-motion etc. stop breaking)
   typescript: {
-    // ⬅️ Suppress ALL TypeScript errors during build
     ignoreBuildErrors: true,
   },
 
+  // Optional but handy: /admin -> Tina's static admin app
   async rewrites() {
     return [
       {
