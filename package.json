@@ -2,13 +2,12 @@
   "name": "pw",
   "version": "0.1.0",
   "private": true,
- "scripts": {
-  "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
-  "build": "tinacms build && next build",
-  "start": "next start",
-  "lint": "eslint"
-}
-,
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build --local && next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "framer-motion": "^12.23.24",
@@ -16,12 +15,11 @@
     "next-seo": "^7.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-tinacms-editor": "^0.53.26",
-    "tinacms": "^2.9.0"
+    "tinacms": "^2.9.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@tinacms/cli": "^1.11.0",
+    "@tinacms/cli": "^1.12.4",
     "@types/node": "^20.19.23",
     "@types/react": "^19",
     "@types/react-dom": "^19",
