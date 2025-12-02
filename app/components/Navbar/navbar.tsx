@@ -186,7 +186,7 @@ export default function NavBar() {
             N_P
           </motion.a>
 
-          <nav className="hidden flex-1 items-center justify-center gap-48 text-sm font-normal uppercase tracking-[0.35em] text-foreground md:flex md:text-[19px]">
+          <nav className="hidden flex-1 items-center justify-center lg:gap-48 md:gap-20 text-sm font-normal uppercase tracking-[0.35em] text-foreground lg:flex md:text-[19px]">
             {NAV_ITEMS.map((item, index) => (
               <motion.a
                 key={item.href}
@@ -203,7 +203,7 @@ export default function NavBar() {
           </nav>
 
           <motion.div
-            className="hidden md:block"
+            className="hidden lg:block"
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.35, ease: 'easeOut' }}
@@ -219,7 +219,7 @@ export default function NavBar() {
 
           <motion.button
             onClick={() => setIsOpen((p) => !p)}
-            className="text-foreground md:hidden"
+            className="text-foreground lg:hidden"
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
           >
@@ -237,7 +237,7 @@ export default function NavBar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden border-t border-foreground/10 bg-background/95 backdrop-blur"
+              className="lg:hidden border-t border-foreground/10 bg-background/95 backdrop-blur"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}

@@ -4,6 +4,16 @@
   --background: #E6D9CC;
   --foreground: #453218;
   --s-text: #CF6345;
+  box-sizing: border-box !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  @apply bg-background text-foreground font-sans;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Tailwind theme inline override */
@@ -16,21 +26,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* html{
+  background-color:pink!important
+} */
 /* Global base styling */
-body {
-  @apply bg-background text-foreground font-sans;
-  margin-left: 37px;
-  margin-right: 37px;
-}
-@media(max-width:480px){
-  body {
-  @apply bg-background text-foreground font-sans;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-}
-
-
 p {
   line-height: 1.6;
 }
@@ -38,21 +37,50 @@ p {
 .tina-editor {
   font-family: var(--font-poppins), sans-serif;
 }
-.hr{
+
+.hr {
   /* border-l border-[#C2B5A8]/70 border-dashed rounded-full */
-  
-/* border-color: #C2B5A8 0.7 border-dashed; */
-border-top: #c2b5a8 1px dashed;
+
+  /* border-color: #C2B5A8 0.7 border-dashed; */
+  border-top: #c2b5a8 1px dashed;
 }
 
-.hrb{
+.hrb {
   /* border-l border-[#C2B5A8]/70 border-dashed rounded-full */
-  
-/* border-color: #C2B5A8 0.7 border-dashed; */
-border-top: #c2b5a8 1px dashed;
-border-bottom: #c2b5a8 1px dashed;
-}
 
-.hb{
+  /* border-color: #C2B5A8 0.7 border-dashed; */
+  border-top: #c2b5a8 1px dashed;
   border-bottom: #c2b5a8 1px dashed;
+}
+
+.hb {
+  border-bottom: #c2b5a8 1px dashed;
+}
+
+/* Shared gutter utility to keep full-width elements aligned with body padding */
+.container-fluid {
+  @apply w-full mx-auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+@media (min-width: 375px) {
+  .container-fluid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .container-fluid {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-fluid {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
 }

@@ -309,7 +309,7 @@ function StaggerText({
         className="inline"
       >
         {items.map((t, i) => (
-          <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.25em]">
+          <motion.span key={i} variants={wordVariant} className="inline-block sm:mr-.1 mr-[0.25em]">
             {t}
           </motion.span>
         ))}

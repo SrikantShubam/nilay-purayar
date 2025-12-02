@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-"build": "tinacms build  && next build",
-
+    "build": "tinacms build  && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:responsive": "backstop test",
+    "test:reference": "backstop reference",
+    "test:approve": "backstop approve",
+    "test:report": "backstop openReport"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -24,6 +27,7 @@
     "@types/node": "^20.19.23",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "backstopjs": "^6.3.25",
     "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",

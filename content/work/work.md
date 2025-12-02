@@ -2,7 +2,7 @@
 title: Data Analyst Intern
 company: AIRE Real Estate
 work:
-  - title: ' Co-Founder '
+  - title: 'Co-Founder '
     company: MMD Anaalytics India Private Limited
     description: >-
       I led data-driven decision-making initiatives for a trading firm,
@@ -32,7 +32,7 @@ work:
       revenue forecasting and customer retention. Working with large-scale SQL
       datasets, I analyzed behavioral patterns to uncover data-driven insights
       that guided strategic business decisions.
-  - title: ' Data Science Intern'
+  - title: Data Science Intern
     company: Smart Knower
     description: >-
       Gained hands-on experience in machine learning techniques, including

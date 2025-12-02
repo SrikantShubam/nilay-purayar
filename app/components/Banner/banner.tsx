@@ -371,7 +371,7 @@ function StaggerText({
 export default function Banner() {
   return (
     <motion.section
-      className="w-full py-12 mt-40 sm:mt-60 md:mt-80 hr"
+      className="w-full py-12 "
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.3 }}

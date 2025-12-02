@@ -1,0 +1,98 @@
+{
+  "id": "nilay_portfolio_responsive_test",
+  "viewports": [
+    {
+      "label": "phone_se",
+      "width": 320,
+      "height": 568
+    },
+    {
+      "label": "phone_small",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "phone_medium",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "label": "phone_large",
+      "width": 425,
+      "height": 844
+    },
+    {
+      "label": "tablet_portrait",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "tablet_landscape",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "label": "desktop_small",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "label": "desktop_medium",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "label": "desktop_large",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "scenarios": [
+    {
+      "label": "Homepage_Full",
+      "url": "http://localhost:3000",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": [
+    "browser",
+    "CI"
+  ],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "headless": "new",
+    "timeout": 120000
+  },
+  "asyncCaptureLimit": 3,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

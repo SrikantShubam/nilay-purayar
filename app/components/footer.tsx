@@ -196,7 +196,7 @@ export default function Footer() {
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="group flex items-center gap-2 transition-colors duration-300 hover:text-[color:var(--color-s-text)]"
+                  className="group flex items-center align-center md:gap-2 transition-colors duration-300 hover:text-[color:var(--color-s-text)]"
                 >
                   <span>{label}</span>
                   <Chevron />
@@ -207,7 +207,7 @@ export default function Footer() {
         </motion.div>
 
         <motion.p
-          className="flex items-center gap-3 text-sm text-muted-foreground sm:justify-end"
+          className="flex items-center gap-3 text-sm text-muted-foreground sm:justify-end text-left md:text-center"
           variants={linkItem}
         >
           <span>Developed by</span>

@@ -1,6 +1,6 @@
 ---
 projects:
-  - project_name: ' Multi-Emission Environmental Impact Analysis & Forecasting (EU)'
+  - project_name: Multi-Emission Environmental Impact Analysis & Forecasting (EU)
     short_description: ' Built a predictive model to analyze and forecast European emission trends, helping assess sustainability performance across multiple sectors.'
     long_description: >-
       Domain: Environmental Data Science & Forecasting

@@ -79,7 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable}`}>
       <body className="relative font-sans bg-background text-foreground antialiased min-h-screen">
         {/* === GLOBAL VERTICAL LINES (background) === */}
-        <div className="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
+        <div className="pointer-events-none absolute inset-0 z-[1] hidden md:block" aria-hidden="true">
           {/* Left line */}
           <div
             className="absolute top-0 bottom-0 border-l border-[#C2B5A8]/70 border-dashed rounded-full"
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {/* === ALL REAL CONTENT ABOVE LINES === */}
-        <div className="relative z-[5] min-h-screen flex flex-col">
+        <div className="relative z-[5] min-h-screen flex flex-col container-fluid">
           <Header />
           <main className="flex-1">{children}</main>
           {/* <Footer /> */}
