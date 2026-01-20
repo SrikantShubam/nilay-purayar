@@ -232,6 +232,7 @@ function Contact() {
   const socials: { name: string; href: string }[] = [
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/purayar-nilay/' },
     { name: 'Email', href: 'mailto:purayar.nilay@gmail.com' },
+    { name: 'Phone: +33 (0)7 80 83 05 99', href: 'tel:+33780830599' },
     { name: 'Instagram', href: 'https://www.instagram.com/purayar.nilay_06?igsh=MWMxeHUybHhrbGxiag==' },
     { name: 'Snapchat', href: 'https://www.snapchat.com/add/purayar.nilay06?share_id=IwiO_CqN6pw&locale=en-IN' },
   ];

@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "./components/header";
 
@@ -28,6 +29,17 @@ export const metadata: Metadata = {
   authors: [{ name: "Nilay Purayar", url: "https://nilaypurayar.com" }],
   creator: "Nilay Purayar",
   publisher: "Nilay Purayar",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   alternates: {
     canonical: "https://nilaypurayar.com",
   },
@@ -98,6 +110,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">{children}</main>
           {/* <Footer /> */}
         </div>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="d9523d5f-d591-4af2-9e4f-7df504de1141"
+          strategy="afterInteractive"
+          defer
+        />
       </body>
     </html>
   );
