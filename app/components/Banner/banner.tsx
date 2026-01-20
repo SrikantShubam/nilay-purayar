@@ -358,9 +358,12 @@ function StaggerText({
         className="inline"
       >
         {items.map((t, i) => (
-          <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.25em]">
-            {t}
-          </motion.span>
+          <React.Fragment key={i}>
+            <motion.span variants={wordVariant} className="inline-block">
+              {t}
+            </motion.span>
+            {by === 'word' && i < items.length - 1 ? ' ' : ''}
+          </React.Fragment>
         ))}
       </motion.span>
     </Tag>

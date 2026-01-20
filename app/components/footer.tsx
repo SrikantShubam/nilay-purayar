@@ -174,11 +174,11 @@ export default function Footer() {
           variants={stagger}
         >
           <motion.a
-            href="mailto:hello@nilaypurayar.com"
+            href="mailto:purayar.nilay@gmail.com"
             className="text-[36px] font-semibold leading-none tracking-tight transition-colors duration-300 hover:text-[color:var(--color-s-text)]"
             variants={linkItem}
           >
-            hello@nilaypurayar.com
+            purayar.nilay@gmail.com
           </motion.a>
 
           <motion.nav
@@ -186,10 +186,10 @@ export default function Footer() {
             variants={stagger}
           >
             {[
-              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/YOUR-USERNAME/' },
-              { label: 'X', href: 'https://twitter.com/YOUR-HANDLE' },
-              { label: 'WhatsApp', href: 'https://wa.me/YOUR-NUMBER' },
-              { label: 'Email', href: 'mailto:hello@nilaypurayar.com' },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/purayar-nilay/' },
+              { label: 'Instagram', href: 'https://www.instagram.com/purayar.nilay_06?igsh=MWMxeHUybHhrbGxiag==' },
+              { label: 'Snapchat', href: 'https://www.snapchat.com/add/purayar.nilay06?share_id=IwiO_CqN6pw&locale=en-IN' },
+              { label: 'Email', href: 'mailto:purayar.nilay@gmail.com' },
             ].map(({ label, href }) => (
               <motion.div key={label} variants={linkItem}>
                 <Link
@@ -212,12 +212,12 @@ export default function Footer() {
         >
           <span>Developed by</span>
           <Link
-            href="https://agency-ss.example.com"
+            href="https://vectorveda.online"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1 text-foreground transition-colors duration-300 hover:text-[color:var(--color-s-text)]"
           >
-            <span>Agency 10169</span>
+            <span>Vector Veda</span>
             <Chevron />
           </Link>
         </motion.p>

@@ -326,13 +326,15 @@ function StaggerText({
         className="inline"
       >
         {items.map((t, i) => (
-          <motion.span
-            key={i}
-            // variants={wordVariant}
-            className="inline-block mr-[0.25em]"
-          >
-            {t}
-          </motion.span>
+          <React.Fragment key={i}>
+            <motion.span
+              // variants={wordVariant}
+              className="inline-block"
+            >
+              {t}
+            </motion.span>
+            {by === 'word' && i < items.length - 1 ? ' ' : ''}
+          </React.Fragment>
         ))}
       </motion.span>
     </Tag>
@@ -425,67 +427,6 @@ export default function About() {
           />
         </motion.h3>
 
-        {/* Metric paragraph */}
-        <motion.h4
-          className="mx-auto max-w-xl md:my-30 py-0 text-left text-[18px] sm:text-[24px] md:text-[28px] leading-relaxed text-muted-foreground"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.6 }}
-        >
-          <StaggerText
-            as="span"
-            by="word"
-            text={`With experience spanning finance, marketing, and AI product development, I’ve built predictive trading models that improved investment`}
-          />
-          &nbsp;
-          <span className="text-[color:var(--color-s-text)]">accuracy by 20%</span>
-          <StaggerText
-            as="span"
-            by="word"
-            text={`, and Power BI dashboards that boosted reporting`}
-          />
-          &nbsp;
-          <span className="text-[color:var(--color-s-text)]">efficiency by 30%</span>
-          <StaggerText
-            as="span"
-            by="word"
-            text={"."}
-          />
-        </motion.h4>
-
-        {/* Image + quote */}
-        <motion.div
-          className="flex flex-col items-center gap-6 md:py-10 py-0 text-center hb"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.6 }}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, filter: 'blur(6px)' }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-              filter: 'blur(0px)',
-              transition: { duration: 1, ease: 'easeOut' },
-            }}
-            viewport={{ once: true, amount: 0.6 }}
-          >
-            <Image
-              src={RiderImg}
-              alt="Nilay Purayar riding a bike"
-              className="h-auto w-full max-w-[240px] sm:max-w-[360px] md:max-w-lg"
-              priority
-            />
-          </motion.div>
-          <StaggerText
-            as="h4"
-            by="word"
-            className="text-[22px] sm:text-[28px] md:text-[40px] italic mt-20"
-            text="Where data meets flight and motion."
-          />
-        </motion.div>
       </div>
     </section>
   );

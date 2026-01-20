@@ -607,9 +607,12 @@ function StaggerText({
         className="inline"
       >
         {items.map((t, i) => (
-          <motion.span key={i} className="inline-block mr-[0.25em]">
-            {t}
-          </motion.span>
+          <React.Fragment key={i}>
+            <motion.span className="inline-block">
+              {t}
+            </motion.span>
+            {by === 'word' && i < items.length - 1 ? ' ' : ''}
+          </React.Fragment>
         ))}
       </motion.span>
     </Tag>
@@ -696,7 +699,7 @@ export default function Projects() {
   }, [selected, onKey]);
 
   return (
-    <section className="w-full py-14 sm:py-20 md:py-24">
+    <section id="projects" className="w-full py-14 sm:py-20 md:py-24">
       <div className="mx-auto space-y-8 sm:space-y-10 md:space-y-12 text-foreground max-w-6xl px-4 sm:px-6 lg:px-0">
         {/* Page Header */}
         <motion.div

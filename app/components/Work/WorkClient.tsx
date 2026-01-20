@@ -309,9 +309,12 @@ function StaggerText({
         className="inline"
       >
         {items.map((t, i) => (
-          <motion.span key={i} variants={wordVariant} className="inline-block sm:mr-.1 mr-[0.25em]">
-            {t}
-          </motion.span>
+          <React.Fragment key={i}>
+            <motion.span variants={wordVariant} className="inline-block">
+              {t}
+            </motion.span>
+            {by === 'word' && i < items.length - 1 ? ' ' : ''}
+          </React.Fragment>
         ))}
       </motion.span>
     </Tag>
@@ -321,7 +324,7 @@ function StaggerText({
 /* ===== Work Section ===== */
 export default function WorkClient({ workItems }: { workItems: WorkItem[] }) {
   return (
-    <section className="w-full py-20">
+    <section id="work" className="w-full py-20">
       <motion.h2
         variants={fadeUp}
         initial="hidden"

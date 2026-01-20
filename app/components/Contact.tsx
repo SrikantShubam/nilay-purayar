@@ -199,9 +199,12 @@ function StaggerText({
         className="inline"
       >
         {items.map((t, i) => (
-          <motion.span key={i} className="inline-block mr-[0.25em]">
-            {t}
-          </motion.span>
+          <React.Fragment key={i}>
+            <motion.span className="inline-block">
+              {t}
+            </motion.span>
+            {by === 'word' && i < items.length - 1 ? ' ' : ''}
+          </React.Fragment>
         ))}
       </motion.span>
     </Tag>
@@ -227,17 +230,14 @@ function ChevronRightIcon({ className = '' }: { className?: string }) {
 function Contact() {
   // Edit your links here; grid will place them row-wise in two columns.
   const socials: { name: string; href: string }[] = [
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/' },
-    { name: 'Facebook', href: 'https://www.facebook.com/' },
-    { name: 'Email', href: 'https://www.youtube.com/' },
-    { name: 'X (Twitter)', href: 'https://twitter.com/' },
-    { name: 'Instagram', href: 'https://www.instagram.com/' },
-    { name: 'Snapchat', href: 'https://www.snapchat.com/' },
-    // Add more as needed…
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/purayar-nilay/' },
+    { name: 'Email', href: 'mailto:purayar.nilay@gmail.com' },
+    { name: 'Instagram', href: 'https://www.instagram.com/purayar.nilay_06?igsh=MWMxeHUybHhrbGxiag==' },
+    { name: 'Snapchat', href: 'https://www.snapchat.com/add/purayar.nilay06?share_id=IwiO_CqN6pw&locale=en-IN' },
   ];
 
   return (
-    <section className="w-full py-32">
+    <section id="contact" className="w-full py-32">
       <div className="mx-auto space-y-14 text-foreground">
         {/* Top icon + tagline */}
         <motion.div

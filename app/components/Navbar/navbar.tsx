@@ -209,7 +209,7 @@ export default function NavBar() {
             transition={{ delay: 0.3, duration: 0.35, ease: 'easeOut' }}
           >
             <Link
-              href="/resume.pdf"
+              href="/Nilay%20Purayar_CVP-HR.pdf"
               download
               className="rounded-[20px] bg-s-text px-6 py-2 text-sm font-normal text-white transition-opacity duration-300 hover:opacity-90 md:text-[19px]"
             >
@@ -266,7 +266,7 @@ export default function NavBar() {
                   transition={{ delay: 0.2, duration: 0.25 }}
                 >
                   <Link
-                    href="/resume.pdf"
+                    href="/Nilay%20Purayar_CVP-HR.pdf"
                     download
                     className="mt-2 block rounded-[20px] bg-s-text px-6 py-3 text-center text-sm font-normal text-white transition-opacity duration-300 hover:opacity-90 md:text-base"
                     onClick={() => setIsOpen(false)}
