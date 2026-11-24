@@ -84,5 +84,48 @@ projects:
       Benchmarked Airbus against Boeing and COMAC for strategic positioning.
       Built dashboards to track profitability and liquidity trends.
       Outcome: Investment insights combining financial modeling with ESG and innovation strategy analysis, presented to a faculty panel.
+  - project_name: Strategy & Management – Stellantis Post-Merger Analysis
+    short_description: 'Analyzed Stellantis'' post-merger integration and EV transition using SWOT, PESTEL, VRIO and Porter''s 5 Forces, and proposed a roadmap of governance and innovation reforms.'
+    long_description: |-
+      Domain: Strategic Management & Business Transformation
+      Tools: SWOT, PESTEL, VRIO, Porter's 5 Forces, Competitive Benchmarking
+      Overview: Assessed the post-merger performance of Stellantis (FCA + PSA) to identify integration challenges and strategic bottlenecks in its shift to electric vehicles.
+      Highlights:
+      Diagnosed cultural misalignment, brand dilution across 14 brands and R&D underinvestment compared with EV-focused peers.
+      Evaluated EV rollout delays, market share erosion and governance weaknesses.
+      Benchmarked governance, R&D intensity, brand architecture and EV readiness against competitors.
+      Proposed an EV R&D spin-off, a brand clarity framework and cross-cultural integration programs.
+      Outcome: A governance and innovation reform roadmap presented to a faculty panel.
+  - project_name: Greenwashing Detection AI Agent – Hackathon
+    short_description: Built an AI agent that checks companies' environmental claims against retrieved evidence using Retrieval-Augmented Generation.
+    long_description: |-
+      Domain: Generative AI & ESG
+      Tools: Python, LLMs, RAG
+      Overview: Self-initiated hackathon project to help spot greenwashing by testing companies' sustainability claims against evidence.
+      Highlights:
+      Built an AI agent that retrieves relevant evidence for a company's environmental claims.
+      Used Retrieval-Augmented Generation so the model judges each claim against that evidence.
+  - project_name: Urban Heat Island Risk Assessment using Satellite Imagery
+    short_description: Scored urban cooling risk across Île-de-France from satellite imagery with classical computer vision. The score correlated at r = 0.762 with measured land surface temperature.
+    long_description: |-
+      Domain: Computer Vision & Climate Risk
+      Tools: Python, OpenCV, Google Earth Engine, Plotly Dash
+      Overview: Assessed urban heat risk in Île-de-France from Sentinel-2 multispectral and Landsat-8 thermal imagery, without deep learning or labeled data.
+      Highlights:
+      Extracted 8 interpretable features (including NDBI, NDVI, Sobel edges, Harris corners, SLIC superpixels and Otsu thresholding) and combined them into a weighted Cooling Risk Score from 0 to 100.
+      Reached a Pearson correlation of 0.762 with ground-truth Land Surface Temperature across 1,767 points.
+      Validated the score on known heat traps (La Défense, Orly Airport) and cooling zones (Bois de Boulogne, Bois de Vincennes).
+      Built an interactive Plotly Dash dashboard to explore the results.
+  - project_name: Automated Financial Reports Generator
+    short_description: 'Built a Python tool that fetches, analyzes and visualizes company financial statements through an API, replacing a manual reporting task.'
+    long_description: |-
+      Domain: Python Programming & Financial Automation
+      Tools: Python, Pandas, Matplotlib, Flask, Tkinter, Financial Modeling Prep API
+      Overview: Full-stack Python tool that fetches, analyzes and visualizes the financial statements (income statement, balance sheet and cash flow) of listed companies.
+      Highlights:
+      Designed a modular pipeline that goes from API data retrieval to ratio computation and visualization.
+      Built a Tkinter desktop interface and a Flask web dashboard.
+      Calculated key ratios in real time, including ROE, ROA, EBITDA, Profit Margin, Current Ratio and Debt-to-Equity.
+      Outcome: Replaced a recurring manual reporting task with clear, visual reports for investors.
 ---
 
