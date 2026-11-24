@@ -1,240 +1,88 @@
 ---
 projects:
-  - project_name: Multi-Emission Environmental Impact Analysis & Forecasting (EU)
-    short_description: ' Built a predictive model to analyze and forecast European emission trends, helping assess sustainability performance across multiple sectors.'
-    long_description: >-
-      Domain: Environmental Data Science & Forecasting
-
-
-      Tech Stack: Python, Pandas, Scikit-learn, K-Means, ARIMA, LSTM, Power BI
-
-
-      Overview: Analyzed multi-pollutant greenhouse gas data (CO₂, CH₄, N₂O,
-      HFCs, SF₆, etc.) across EU countries to forecast emission trends and
-      identify policy insights. Combined statistical modeling and machine
-      learning to guide sustainability strategy.  
-
-
-      Highlights:  Clustered 27 EU nations using K-Means and forecasted
-      emissions via ARIMA & LSTM.  Integrated GDP and population data to explore
-      economic-environmental correlations.  Derived actionable insights for EU
-      climate neutrality planning and energy policy.  
-
-
-      Impact: Enabled evidence-based environmental decision-making and showcased
-      how ML can power sustainable strategy.
-  - project_name: Automated Financial Reports Generator
-    short_description: >-
-      Developed a Python-based automation tool to fetch, analyze, and visualize
-      company financial statements through APIs, streamlining investment
-      analysis workflows.
-    long_description: >-
-      Domain: Python Programming & Financial Automation
-
-      Tech Stack: Python, Flask, Tkinter, Matplotlib, Pandas, Financial Modeling
-      Prep API
-
-
-      Overview:
-
-      Built a full-stack Python tool that automatically fetches, analyzes, and
-      visualizes financial statements (Income, Balance Sheet, Cash Flow) of
-      listed companies.
-
-
+  - project_name: Marketing Mix Modeling & ROI Optimization – Energy Drink Brand
+    short_description: 'Built a Marketing Mix Model in R to measure how much each of six media channels contributed to sales, with an R Shiny simulator to test budget allocations.'
+    long_description: |-
+      Domain: Marketing Analytics & ROI Measurement
+      Tools: R, R Shiny, Log-Log Regression, Adstock Modeling
+      Overview: Estimated the sales contribution and ROI of six marketing channels for an energy drink brand using 104 weeks of sales and media spend data.
       Highlights:
-
-
-      Created modular Python architecture (data API → ratio computation →
-      visualization).
-
-
-      Implemented Tkinter GUI & Flask web app for user-friendly access.
-
-
-      Calculated key financial ratios (ROE, ROA, Profit Margin, D/E).
-
-
-      Impact:
-
-      Streamlined financial analysis workflows by transforming raw API data into
-      visualized, actionable reports for investors.
-  - project_name: Corporate Financial Analysis – Airbus SE
-    short_description: >-
-      Performed financial modeling and valuation (DCF, NPV, IRR) for Airbus SE,
-      benchmarking profitability and capital structure to assess long-term
-      shareholder value.
-    long_description: >-
-      Domain: Corporate Finance & Strategic Valuation
-
-      Tools: Excel, Power BI, DCF, Ratio Analysis, NPV/IRR Modeling
-
-
-      Overview:
-
-      Performed a detailed financial and strategic analysis of Airbus SE to
-      assess profitability, liquidity, solvency, and shareholder value creation
-      between 2018–2023.
-
-
+      Built an adstock-adjusted, elasticity-based log-log model that captures lag effects across TV, POS Display, Out-of-Home, Google Search, YouTube and Sports Sponsorship.
+      Developed an R Shiny budget-allocation simulator to compare spend scenarios.
+      Identified POS Display and Out-of-Home as the highest-ROI channels.
+      Outcome: Recommendations to reallocate budget toward the channels with the best return.
+  - project_name: Predictive Modeling for Marketing Optimization – VS Bank
+    short_description: Built and compared 7 machine learning models in SAS Viya on about 1M customer records to predict which customers would respond to a banking campaign.
+    long_description: |-
+      Domain: Predictive Analytics & Campaign Targeting
+      Tools: SAS Viya, Gradient Boosting, Random Forest, Logistic Regression, GAM, Neural Networks
+      Overview: Built a predictive analytics pipeline to forecast customer purchase likelihood for a bank's marketing campaign, using about 1M customer records and 24 variables.
       Highlights:
-
-
-      Conducted DCF valuation (IRR 11.8% vs WACC 6.59%), confirming value
-      creation.
-
-
-      Analyzed capital structure, FCF, and ROIC vs WACC metrics.
-
-
-      Benchmarked Airbus against Boeing & COMAC for strategic positioning.
-
-
-      Impact:
-
-      Produced actionable investment insights combining financial modeling with
-      ESG and innovation strategy analysis.
-  - project_name: Relational Database Design for Airline & Hotel Booking System
-    short_description: >-
-      Designed a normalized PostgreSQL database for managing travel bookings,
-      ensuring data integrity and enabling SQL analytics on flights, customers,
-      and destinations.
-    long_description: >-
+      Prepared the data with a 70/30 stratified split, decision-tree imputation for variables under 50% missing, and feature screening.
+      Compared 7 algorithms (Logistic Regression, GAM, Decision Tree, Random Forest, Neural Network, Gradient Boosting and a Bayesian model) with hyperparameter tuning and cross-validation.
+      Selected Gradient Boosting as the champion model (KS 0.6077, AUC 0.8823, accuracy 85.8%).
+      Identified the top 3 of 24 predictors: RFM7, Income Tier and Behavioral Category.
+      Learned SAS Viya from scratch for this project.
+      Outcome: Customer segments built from the model scores to target the campaign and improve its ROI.
+  - project_name: Relational Database Design – Airline & Hotel Booking System
+    short_description: 'Designed a normalized PostgreSQL database for a travel booking platform and used SQL to analyze travel trends, pricing and customer segments.'
+    long_description: |-
       Domain: Database Design & SQL Analytics
-
-      Tech Stack: PostgreSQL, SQL, ER Modeling, Normalization (3NF)
-
-
-      Overview:
-
-      Designed and implemented a relational database for a travel booking
-      platform managing customer, flight, and hotel data.
-
-
+      Tools: PostgreSQL, SQL, ER Modeling, Normalization (3NF)
+      Overview: Designed and built a relational database for a travel booking platform managing customer, trip, flight and hotel data.
       Highlights:
-
-
-      Built 10 fully normalized tables (Customer, Trip, Flight, Hotel, Review,
-      etc.).
-
-
-      Applied 3NF normalization, defined functional dependencies, and enforced
-      referential integrity.
-
-
-      Created analytical SQL queries — busiest airports, top destinations, and
-      flight pricing trends.
-
-
-      Impact:
-
-      Delivered a robust, normalized database system supporting data-driven
-      travel intelligence and analytics.
-  - project_name: Data-Driven Marketing Strategy – L’Oréal Cell BioPrint
-    short_description: >-
-      Built segmentation and pricing models using clustering and regression to
-      define optimal pricing and persona-based marketing strategies for
-      L’Oréal’s AI skincare innovation.
-    long_description: >-
+      Modeled the system in an ER diagram and built 10 integrated tables (Customer, Trip, Flight, Hotel, Review and more) normalized to 3NF.
+      Defined functional dependencies and enforced referential integrity.
+      Wrote SQL with joins, aggregations, sub-queries, window functions and views, including analyses of the busiest airports, top destinations and flight pricing trends.
+      Analyzed travel trends across 31 customer countries and 790+ destination cities, with pricing analysis and customer segmentation.
+      Outcome: A clean, consistent database ready for reporting and travel analytics.
+  - project_name: Multi-Emission Environmental Impact Analysis & Forecasting (EU)
+    short_description: 'Analyzed and forecast greenhouse-gas emissions across 27 EU countries from 1990 to 2022 using clustering, ARIMA and LSTM, with Power BI dashboards showing emission hotspots.'
+    long_description: |-
+      Domain: Environmental Data Science & Forecasting
+      Tools: Python, Pandas, Scikit-learn, K-Means, ARIMA, LSTM, Power BI
+      Overview: Analyzed 7 greenhouse-gas pollutants (including CO₂, CH₄, N₂O, HFCs and SF₆) across EU countries over 32 years (1990-2022) to forecast emission trends and draw policy insights, combining statistical modeling and machine learning.
+      Highlights:
+      Built a Python ETL pipeline to clean and combine large EU datasets.
+      Clustered 27 EU countries into 3 groups with K-Means.
+      Forecast emissions with ARIMA and LSTM, including 10-year forecasts for CO₂ and CH₄.
+      Integrated GDP and population data to explore links between economic activity and emissions.
+      Built Power BI dashboards with consistent KPI definitions to show emission hotspots.
+      Outcome: Insights for EU climate neutrality planning and energy policy.
+  - project_name: Data-Driven Marketing Strategy – L'Oréal Cell BioPrint
+    short_description: 'Built customer personas and pricing models for L''Oréal''s AI skincare device, using clustering and regression to support its market-entry strategy.'
+    long_description: |-
       Domain: Marketing Analytics & Pricing Strategy
-
-      Tech Stack: Python (Clustering & Regression), SPSS, Excel, Tableau
-
-
-      Overview:
-
-      Designed a data-driven segmentation and pricing framework for L’Oréal’s
-      AI-powered skincare innovation – Cell BioPrint.
-
-
+      Tools: Python (Clustering & Regression), SPSS, Excel, Tableau
+      Overview: Designed a data-driven segmentation and pricing framework for Cell BioPrint, L'Oréal's AI-powered skincare device.
       Highlights:
-
-
-      Segmented consumers into 4 actionable personas using clustering analysis.
-
-
-      Built price elasticity models optimizing one-time (€230–€250) and
-      subscription (€65–€100) pricing.
-
-
-      Developed persona-based marketing strategies aligning AI innovation with
-      affordability.
-
-
-      Impact:
-
-      Bridged marketing analytics and pricing science to support a real-world
-      tech-based product launch.
-  - project_name: Strategy & Management – Stellantis Post-Merger Analysis
-    short_description: >-
-      Analyzed post-merger strategy for Stellantis using SWOT and Porter’s 5
-      Forces, identifying EV transition challenges and proposing integration and
-      innovation frameworks
-    long_description: >-
-      Domain: Strategic Management & Business Transformation
-
-      Frameworks: SWOT, PESTEL, VRIO, Porter’s 5 Forces
-
-
-      Overview:
-
-      Assessed the post-merger performance of Stellantis (FCA + PSA) to identify
-      integration challenges and strategic bottlenecks in EV transformation.
-
-
+      Segmented consumers into 4 actionable personas using cluster analysis.
+      Built price elasticity models to set one-time (€230-€250) and subscription (€65-€100) price ranges.
+      Simulated one-time purchase versus subscription pricing in Excel.
+      Developed persona-based marketing strategies that balance the device's AI features with affordability.
+      Outcome: A market-entry pricing and positioning strategy for a tech-based product launch.
+  - project_name: Perishable Inventory Optimization with Shelf-Life Constraints
+    short_description: 'Used reinforcement learning to find reorder policies for perishable stock, reaching 96% of the optimal benchmark, with a Streamlit dashboard for simulation.'
+    long_description: |-
+      Domain: Supply Chain Analytics & Reinforcement Learning
+      Tools: Python, Reinforcement Learning, Gymnasium, Streamlit
+      Overview: Modeled perishable inventory as a Markov Decision Process with FEFO (first-expired, first-out) dynamics to decide how much stock to reorder under shelf-life constraints.
       Highlights:
-
-
-      Diagnosed cultural misalignment and brand dilution across Stellantis’s 14
-      brands.
-
-
-      Evaluated EV rollout delays, market share erosion, and governance
-      weaknesses.
-
-
-      Proposed EV R&D spin-off, brand clarity framework, and cross-cultural
-      integration programs.
-
-
-      Impact:
-
-      Delivered strategic recommendations to rebuild alignment, innovation, and
-      competitiveness in the global EV market.
-  - project_name: Predictive Modeling for Marketing Optimization – VS Bank (SAS Viya)
-    short_description: >-
-      Developed predictive models using Gradient Boosting and Random Forest to
-      optimize banking campaign targeting and improve customer response
-      accuracy.
-    long_description: >-
-      Domain: Predictive Analytics & Campaign Intelligence
-
-      Tech Stack: SAS Viya, Gradient Boosting, Random Forest, Logistic
-      Regression
-
-
-      Overview:
-
-      Developed an enterprise-level predictive analytics pipeline to forecast
-      customer purchase likelihood for a banking campaign.
-
-
+      Implemented and compared 5 agents: Value Iteration, Q-Learning, SARSA, Monte Carlo and Linear Function Approximation.
+      Trained over 3,000 episodes, with SARSA reaching 96% of the dynamic-programming optimum (1,243 vs 1,295).
+      Built a Streamlit dashboard for policy simulation and cost sensitivity analysis.
+      Outcome: A repeatable way to test replenishment policies before applying them.
+  - project_name: Corporate Financial Analysis – Airbus SE
+    short_description: 'Financial and strategic analysis of Airbus SE (2018-2023), with DCF, NPV/IRR and WACC valuation and a benchmark against Boeing and COMAC.'
+    long_description: |-
+      Domain: Corporate Finance & Strategic Valuation
+      Tools: Excel, Power BI, DCF, NPV/IRR Modeling, WACC, Ratio Analysis
+      Overview: Analyzed Airbus SE's profitability, liquidity, solvency and shareholder value creation between 2018 and 2023.
       Highlights:
-
-
-      Compared 7 algorithms (Logistic, GAM, Tree, Forest, NN, Boosting,
-      Bayesian).
-
-
-      Selected Gradient Boosting (KS = 0.6077, AUC = 0.8823, Accuracy = 85.8%).
-
-
-      Identified key features: RFM7, Income Tier, and Behavioral Category.
-
-
-      Impact:
-
-      Increased campaign efficiency and ROI through data-driven customer
-      targeting and actionable segmentation insights.
+      Built a DCF valuation showing an IRR of 11.8% against a WACC of 6.59%, confirming value creation.
+      Analyzed capital structure, free cash flow and ROIC versus WACC.
+      Benchmarked Airbus against Boeing and COMAC for strategic positioning.
+      Built dashboards to track profitability and liquidity trends.
+      Outcome: Investment insights combining financial modeling with ESG and innovation strategy analysis, presented to a faculty panel.
 ---
 
