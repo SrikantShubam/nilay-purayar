@@ -34,6 +34,12 @@ the project's origin and account access in Tina Cloud.
 
 ## Local verification
 
+The first upgrade deployment (commit 7e199d3) failed with
+`ERR_CLOUD_CHECK_FAILED`: the committed schema lock was still at GraphQL
+1.6.1 while the new CLI generated 4.1.0, which adds the built-in `RichText`
+type. Regenerating and committing `tina/tina-lock.json` lets Tina Cloud
+reindex the new schema. Both content collection definitions are unchanged.
+
 The updated CLI starts under Node 22.23.5. On this Windows checkout,
 `tinacms build --local --noTelemetry` fails during GraphQL document loading:
 the loader treats the Windows query glob beginning with `D:` as GraphQL text
