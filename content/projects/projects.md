@@ -127,5 +127,34 @@ projects:
       Built a Tkinter desktop interface and a Flask web dashboard.
       Calculated key ratios in real time, including ROE, ROA, EBITDA, Profit Margin, Current Ratio and Debt-to-Equity.
       Outcome: Replaced a recurring manual reporting task with clear, visual reports for investors.
+  - project_name: Financial Predictive Modeling – Equity Trend Forecasting
+    short_description: 'Built Python models to forecast stock-price trends from historical market data for an early-stage trading firm, with dashboards to track market signals.'
+    long_description: |-
+      Domain: Financial Analytics & Forecasting
+      Tools: Python, Predictive Modeling, Feature Engineering
+      Overview: Forecast stock-price trends from historical market data to support investment decisions at an early-stage trading firm.
+      Highlights:
+      Built and evaluated predictive models with feature engineering.
+      Set up automated dashboards and KPI tracking that surfaced market signals.
+      Outcome: A data-driven view of market signals to support investment decisions.
+  - project_name: Pawpoy – Pet Health Wearable with AI Triage
+    short_description: 'A pet-health app concept, "a Fitbit for pets with an AI triage nurse". My part was the machine learning and GenAI layer.'
+    long_description: |-
+      Domain: Health Tech & Generative AI
+      Tools: Python, FastAPI, Machine Learning, GenAI
+      Role: Machine learning and GenAI layer
+      Overview: Class hackathon pitch for a pet-health wearable that tracks health data and uses AI to help owners decide when their pet needs care.
+      Highlights:
+      Built the ML and GenAI layer on a Python FastAPI backend fed by a simulated wearable data stream.
+  - project_name: 'X-Ray Security Screening: Classical Object Detection'
+    short_description: 'Detected 6 classes of prohibited items in X-ray baggage images with a classical computer vision pipeline, without deep learning.'
+    long_description: |-
+      Domain: Computer Vision & Security
+      Tools: Python, OpenCV, Scikit-learn
+      Overview: Built an R-CNN-inspired detection pipeline using only classical methods.
+      Highlights:
+      Enhanced contrast with CLAHE, generated candidate regions with Selective Search and described them with HOG and LBP features.
+      Trained a HistGradientBoosting classifier per class, with bounding-box regression and non-maximum suppression.
+      Tested 3 pipeline variants.
 ---
 
