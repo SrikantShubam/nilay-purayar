@@ -1,6 +1,6 @@
 ---
 work:
-  - title: Growth Data Insights and Innovation Intern
+  - title: Global Data Insights and Innovation Intern
     company: CEVA Logistics | October 2026 - Present
     description: 'In the AI & Innovation Department, I work on data, reporting and coordination across our AI projects and startup partnerships. I am building automated AI portfolio reporting from Jira data, covering data quality checks, portfolio consolidation, alerts, and weekly project and program reports, built to requirements from the team''s managers, and developing AI agents that generate planning and "who is doing what" resource views. I also coordinate the AI Demo Factory, working with project managers to present each AI project in a standard format: the problem it solves, business value, KPIs and demo material. Alongside this, I follow startup and Proof-of-Concept projects across CEVA and the ZEBOX ecosystem, tracking progress, blockers and next steps with internal and external stakeholders. I also map and document processes for internal projects and startups, including cybersecurity guidance on roles, documentation and validation stages, and run innovation benchmarking on AI and logistics technologies for the team''s leadership.'
   - title: Corporate Research Project – AI & Data Analytics
