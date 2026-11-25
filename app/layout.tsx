@@ -10,83 +10,74 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["300","400","500","600","
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
-export const metadata: Metadata = {
-  // Live host. Swap to the custom domain once it actually resolves; every
-  // relative URL below (canonical, og:image) is built from this.
-  metadataBase: new URL("https://nilay-purayar.vercel.app"),
-  title: {
-    default: "Nilay Purayar | Data Science, Analytics & Strategy Portfolio",
-    template: "%s | Nilay Purayar",
-  },
-  description:
-    "Nilay Purayar is a data scientist and analyst translating complex datasets into measurable business impact across finance, marketing, and AI products.",
-  keywords: [
-    "Nilay Purayar",
-    "data science portfolio",
-    "business analytics",
-    "predictive modelling",
-    "power bi dashboards",
-    "data-driven strategy",
-    "AI product development",
-  ],
-  authors: [{ name: "Nilay Purayar", url: "https://nilay-purayar.vercel.app" }],
-  creator: "Nilay Purayar",
-  publisher: "Nilay Purayar",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo } = await getSettings();
+
+  return {
+    // Everything relative below (canonical, og:image) resolves against this.
+    // getSettings falls back to the Vercel address if the Site Settings site
+    // URL is missing or not a usable https address.
+    metadataBase: new URL(seo.siteUrl),
+    title: {
+      default: seo.title,
+      template: `%s | ${seo.siteName}`,
+    },
+    description: seo.description,
+    keywords: seo.keywords,
+    authors: [{ name: "Nilay Purayar", url: seo.siteUrl }],
+    creator: "Nilay Purayar",
+    publisher: "Nilay Purayar",
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: "https://nilay-purayar.vercel.app",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://nilay-purayar.vercel.app",
-    title: "Nilay Purayar | Data Science, Analytics & Strategy Portfolio",
-    description:
-      "Explore projects that boost trading accuracy, reporting efficiency, and strategic decision-making through data-driven insights.",
-    siteName: "Nilay Purayar Portfolio",
-    images: [
-      {
-        // projects.png is only 200x200. Dimensions below are declared
-        // honestly; a proper 1200x630 share image is a design-step task.
-        url: "/images/projects.png",
-        width: 200,
-        height: 200,
-        alt: "Nilay Purayar Portfolio preview",
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Nilay Purayar | Data Science, Analytics & Strategy Portfolio",
-    description:
-      "Data scientist & analyst delivering measurable impact via predictive models, dashboards, and AI solutions.",
-    images: ["/images/projects.png"],
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-    other: [
-      { rel: "android-chrome", url: "/android-chrome-192x192.png", sizes: "192x192" },
-      { rel: "android-chrome", url: "/android-chrome-512x512.png", sizes: "512x512" },
-    ],
-  },
-  manifest: "/site.webmanifest",
-};
+    },
+    alternates: {
+      canonical: seo.siteUrl,
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: seo.siteUrl,
+      title: seo.title,
+      description: seo.shareDescription,
+      siteName: seo.siteName,
+      // Width and height are deliberately left out. The share image is
+      // editable in Tina, so hardcoded dimensions would start lying the
+      // moment it is replaced; platforms read the real size themselves.
+      images: seo.shareImage
+        ? [{ url: seo.shareImage, alt: seo.shareImageAlt }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.shareDescription,
+      ...(seo.xHandle ? { creator: seo.xHandle } : {}),
+      images: seo.shareImage ? [seo.shareImage] : undefined,
+    },
+    icons: {
+      icon: [
+        { url: "/favicon.ico" },
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      ],
+      shortcut: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+      other: [
+        { rel: "android-chrome", url: "/android-chrome-192x192.png", sizes: "192x192" },
+        { rel: "android-chrome", url: "/android-chrome-512x512.png", sizes: "512x512" },
+      ],
+    },
+    manifest: "/site.webmanifest",
+  };
+}
 
 
 
