@@ -83,13 +83,7 @@ export default function WorkClient({
 
             {/* Right: description */}
             <div className="md:w-1/2 text-[16px] sm:text-[18px] md:text-[20px] leading-relaxed text-foreground/80">
-              <StaggerText
-                as="p"
-                text={item.description}
-                animateWords
-                stagger={0.06}
-                delayChildren={0.05}
-              />
+              <p>{item.description}</p>
             </div>
           </motion.div>
         ))}
