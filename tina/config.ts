@@ -14,6 +14,19 @@ export default defineConfig({
     publicFolder: "public",
   },
 
+  // Repo-backed media. Uploads are committed to the repository rather than
+  // sent to an external asset host, which is what the free Tina Cloud plan
+  // supports. Files land in public/uploads and are served from /uploads.
+  media: {
+    tina: {
+      mediaRoot: "uploads",
+      publicFolder: "public",
+    },
+    // Images for page content, plus pdf so the CV can be uploaded here.
+    // Individual fields can narrow this further, e.g. accept: "pdf".
+    accept: ["image", "pdf"],
+  },
+
   schema: {
     collections: [
       {
