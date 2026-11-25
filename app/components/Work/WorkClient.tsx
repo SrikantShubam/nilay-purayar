@@ -8,12 +8,19 @@ import { StaggerText, makeFadeUp } from '../motion';
 interface WorkItem {
   title: string;
   company: string;
+  dates: string;
   description: string;
 }
 
 const fadeUp = makeFadeUp({ y: 30, blur: 6, duration: 0.7 });
 
-export default function WorkClient({ workItems }: { workItems: WorkItem[] }) {
+export default function WorkClient({
+  heading,
+  workItems,
+}: {
+  heading: string;
+  workItems: WorkItem[];
+}) {
   return (
     <section id="work" className="w-full py-20">
       <motion.h2
@@ -23,7 +30,7 @@ export default function WorkClient({ workItems }: { workItems: WorkItem[] }) {
         viewport={{ once: true, amount: 0.6 }}
         className="text-[28px] sm:text-[30px] md:text-[32px] font-medium mb-22 text-foreground"
       >
-        Work Experience
+        {heading}
       </motion.h2>
 
       <div className="flex flex-col space-y-20">
@@ -65,7 +72,7 @@ export default function WorkClient({ workItems }: { workItems: WorkItem[] }) {
                 />
                 <StaggerText
                   as="p"
-                  text={item.company}
+                  text={[item.company, item.dates].filter(Boolean).join(' | ')}
                   className="text-[16px] sm:text-[18px] md:text-[22px] font-medium text-[var(--color-s-text)]"
                   animateWords
                   stagger={0.06}
