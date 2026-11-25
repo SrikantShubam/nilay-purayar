@@ -137,6 +137,52 @@ export default defineConfig({
         ],
       },
       {
+        name: "banner",
+        label: "Banner",
+        path: "content/banner",
+        format: "md",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "name", label: "Name", description: "The large heading at the top of the page." },
+          {
+            type: "string",
+            name: "hero_text",
+            label: "Hero text",
+            description: "Runs on into the highlighted phrase below, so leave it unfinished.",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "string",
+            name: "highlighted_text",
+            label: "Highlighted phrase",
+            description: "Shown in the accent colour at the end of the hero sentence.",
+          },
+        ],
+      },
+      {
+        name: "about",
+        label: "About Section",
+        path: "content/about",
+        format: "md",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "tagline", label: "Tagline" },
+          { type: "string", name: "label", label: "Section label" },
+          { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+        ],
+      },
+      {
+        name: "contact",
+        label: "Contact Section",
+        path: "content/contact",
+        format: "md",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "label", label: "Section label" },
+          { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+        ],
+      },
+      {
         name: "work",
         label: "Work Section",
         path: "content/work",
