@@ -40,9 +40,38 @@ The first upgrade deployment (commit 7e199d3) failed with
 type. Regenerating and committing `tina/tina-lock.json` lets Tina Cloud
 reindex the new schema. Both content collection definitions are unchanged.
 
-The updated CLI starts under Node 22.23.5. On this Windows checkout,
-`tinacms build --local --noTelemetry` fails during GraphQL document loading:
-the loader treats the Windows query glob beginning with `D:` as GraphQL text
-and reports `Syntax Error: Unexpected Name "D"`. The admin build and hosted
-sign-in therefore remain unverified. No deployment or cloud settings were
-changed as part of this local upgrade.
+## Spaces in the checkout path break the CLI
+
+`tinacms dev` and `tinacms build` fail during GraphQL document loading with
+`Syntax Error: Unexpected Name "<drive letter>"`, naming the query glob:
+
+    <repo>/tina/queries/**/*.{graphql,gql}
+
+An earlier note here blamed the Windows drive letter and the backslash
+separators. That was wrong. The trigger is **a space anywhere in the checkout
+path**.
+
+The CLI passes that glob to `@graphql-tools/load`. Its `isDocumentString()`
+decides "path or GraphQL source?" by checking whether the string ends in
+`.something`. A brace glob ending in `{graphql,gql}` does not, so it tries to
+parse the path as GraphQL. Parsing fails, and the catch block rethrows rather
+than returning false whenever the string contains a space:
+
+    if (!e.message.includes('EOF') && str.replace(...).trim() !== '' && str.includes(' '))
+      throw new Error(`Failed to parse the GraphQL document. ...`)
+
+Same path without a space returns false and falls through to the glob
+resolver, which works. Forward versus back slashes make no difference.
+
+**Fix:** keep the repository at a path with no spaces, for example
+`E:\Portfolio-Website\nilay-purayar` rather than `E:\Portfolio Website\...`.
+A `subst` drive does not help: the CLI resolves it back to the real path and
+then fails its own path-traversal check.
+
+## Local build credentials
+
+`npm run build` runs `tinacms build` first, which needs
+`NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN`. The Tina CLI reads **only
+`.env`** at the repository root. It does not read `.env.local`, despite that
+being the usual Next.js location for secrets. Put both values in `.env`.
+Both files are gitignored.
