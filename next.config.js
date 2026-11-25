@@ -1,11 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ignore all TS errors during build (so framer-motion etc. stop breaking)
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
-  // Optional but handy: /admin -> Tina's static admin app
+  // Serve Tina's static admin app from /admin.
   async rewrites() {
     return [
       {
