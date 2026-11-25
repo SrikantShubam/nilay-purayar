@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "./components/header";
+import { getSettings } from "./lib/settings";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["300","400","500","600","700"], variable: "--font-poppins" });
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
@@ -89,7 +90,9 @@ export const metadata: Metadata = {
 
 
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSettings();
+
   return (
     <html lang="en" className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable}`}>
       <body className="relative font-sans bg-background text-foreground antialiased min-h-screen">
@@ -109,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* === ALL REAL CONTENT ABOVE LINES === */}
         <div className="relative z-[5] min-h-screen flex flex-col container-fluid">
-          <Header />
+          <Header navbar={settings.navbar} />
           <main className="flex-1">{children}</main>
           {/* <Footer /> */}
         </div>

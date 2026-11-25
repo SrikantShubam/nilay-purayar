@@ -3,15 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, easeOut, type Variants } from 'framer-motion';
-
-const NAV_ITEMS = [
-  { label: 'Work', href: '#work' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
-];
-
-/** Uploaded through the Tina media manager. Becomes a Tina field in Site Settings. */
-const RESUME_HREF = '/uploads/nilay-purayar-cv.pdf';
+import type { NavbarSettings } from '@/app/lib/settings';
 
 const navItemVariants: Variants = {
   hidden: { opacity: 0, y: -8 },
@@ -22,8 +14,9 @@ const navItemVariants: Variants = {
   }),
 };
 
-export default function NavBar() {
+export default function NavBar({ navbar }: { navbar: NavbarSettings }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { logoText, menuItems, resumeLabel, resumeHref } = navbar;
 
   return (
     /* Sticky on a non-animated wrapper, otherwise the transform breaks position: sticky. */
@@ -42,11 +35,11 @@ export default function NavBar() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.35, ease: easeOut }}
           >
-            N_P
+            {logoText}
           </motion.a>
 
           <nav className="hidden flex-1 items-center justify-center lg:gap-48 md:gap-20 text-sm font-normal uppercase tracking-[0.35em] text-foreground lg:flex md:text-[19px]">
-            {NAV_ITEMS.map((item, index) => (
+            {menuItems.map((item, index) => (
               <motion.a
                 key={item.href}
                 href={item.href}
@@ -68,11 +61,11 @@ export default function NavBar() {
             transition={{ delay: 0.3, duration: 0.35, ease: easeOut }}
           >
             <Link
-              href={RESUME_HREF}
+              href={resumeHref}
               download
               className="rounded-[20px] bg-s-text px-6 py-2 text-sm font-normal text-white transition-opacity duration-300 hover:opacity-90 md:text-[19px]"
             >
-              Download&nbsp;Resume
+              {resumeLabel}
             </Link>
           </motion.div>
 
@@ -104,7 +97,7 @@ export default function NavBar() {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <nav className="flex flex-col items-center gap-4 px-4 pt-4 pb-4 text-sm font-normal uppercase tracking-[0.2em] text-foreground md:text-base">
-                {NAV_ITEMS.map((item, index) => (
+                {menuItems.map((item, index) => (
                   <motion.a
                     key={item.href}
                     href={item.href}
@@ -127,12 +120,12 @@ export default function NavBar() {
                   transition={{ delay: 0.2, duration: 0.25 }}
                 >
                   <Link
-                    href={RESUME_HREF}
+                    href={resumeHref}
                     download
                     className="mt-2 block rounded-[20px] bg-s-text px-6 py-3 text-center text-sm font-normal text-white transition-opacity duration-300 hover:opacity-90 md:text-base"
                     onClick={() => setIsOpen(false)}
                   >
-                    Download&nbsp;Resume
+                    {resumeLabel}
                   </Link>
                 </motion.div>
               </nav>

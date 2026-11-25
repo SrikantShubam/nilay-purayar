@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ContactLogo from '@/public/images/connect.png';
 import { StaggerText, containerStagger, makeFadeUp } from './motion';
-import { socials } from './socials';
+import type { SocialLink } from '@/app/lib/settings';
 
 const fadeUp = makeFadeUp();
 
@@ -25,8 +25,7 @@ function ChevronRightIcon({ className = '' }: { className?: string }) {
 }
 
 
-function Contact() {
-  const contactLinks = socials.filter((s) => s.showInContact);
+function Contact({ socials }: { socials: SocialLink[] }) {
 
   return (
     <section id="contact" className="w-full py-32">
@@ -91,7 +90,7 @@ function Contact() {
           className="mx-auto w-full max-w-3xl px-4"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            {contactLinks.map((s) => {
+            {socials.map((s) => {
               const isExternal = s.href.startsWith('http');
               return (
                 <motion.div key={s.label} variants={fadeUp} className="group">

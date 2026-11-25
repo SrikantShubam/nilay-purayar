@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion, easeOut, type Variants } from 'framer-motion';
-import { EMAIL, socials } from './socials';
+import type { FooterSettings, SocialLink } from '@/app/lib/settings';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24, filter: 'blur(6px)' },
@@ -41,8 +41,15 @@ const Chevron = () => (
   </svg>
 );
 
-export default function Footer() {
-  const footerLinks = socials.filter((s) => s.showInFooter);
+export default function Footer({
+  email,
+  socials,
+  footer,
+}: {
+  email: string;
+  socials: SocialLink[];
+  footer: FooterSettings;
+}) {
 
   return (
     <motion.footer
@@ -58,18 +65,18 @@ export default function Footer() {
           variants={stagger}
         >
           <motion.a
-            href={`mailto:${EMAIL}`}
+            href={`mailto:${email}`}
             className="text-[36px] font-semibold leading-none tracking-tight transition-colors duration-300 hover:text-[color:var(--color-s-text)]"
             variants={linkItem}
           >
-            {EMAIL}
+            {email}
           </motion.a>
 
           <motion.nav
             className="flex items-center justify-end gap-12 text-[20px] font-medium"
             variants={stagger}
           >
-            {footerLinks.map(({ label, href }) => {
+            {socials.map(({ label, href }) => {
               const isExternal = href.startsWith('http');
               return (
                 <motion.div key={label} variants={linkItem}>
@@ -92,14 +99,14 @@ export default function Footer() {
           className="flex items-center gap-3 text-sm sm:justify-end text-left md:text-center"
           variants={linkItem}
         >
-          <span>Developed by</span>
+          <span>{footer.creditText}</span>
           <Link
-            href="https://vectorveda.online"
+            href={footer.creditUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1 text-foreground transition-colors duration-300 hover:text-[color:var(--color-s-text)]"
           >
-            <span>Vector Veda</span>
+            <span>{footer.creditName}</span>
             <Chevron />
           </Link>
         </motion.p>
