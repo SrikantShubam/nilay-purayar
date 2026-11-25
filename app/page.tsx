@@ -2,6 +2,8 @@ import Banner from "./components/Banner/banner";
 import About from "./components/about";
 import Work from "./components/Work/Work";
 import Projects from "./components/Projects/Projects";
+import Education from "./components/Education/Education";
+import Skills from "./components/Skills/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/footer";
 import { getSettings } from "./lib/settings";
@@ -21,6 +23,8 @@ export default async function Home() {
       <About content={about} />
       <Work />
       <Projects />
+      <Education />
+      <Skills />
       <Contact socials={settings.contactSocials} content={contact} />
       <Footer
         email={settings.email}

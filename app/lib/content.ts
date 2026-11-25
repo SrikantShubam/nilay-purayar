@@ -46,3 +46,31 @@ export const getContact = cache(async (): Promise<ContactContent> => {
     text: c.text ?? '',
   };
 });
+
+export type EducationEntry = {
+  school: string;
+  degree: string;
+  dates: string;
+  details: string[];
+};
+
+export type EducationContent = {
+  heading: string;
+  entries: EducationEntry[];
+};
+
+export const getEducation = cache(async (): Promise<EducationContent> => {
+  const res = await client.queries.education({ relativePath: 'education.md' });
+  const e = res.data.education;
+  return {
+    heading: e.heading ?? '',
+    entries: (e.entries ?? [])
+      .filter((entry) => entry !== null)
+      .map((entry) => ({
+        school: entry.school ?? '',
+        degree: entry.degree ?? '',
+        dates: entry.dates ?? '',
+        details: (entry.details ?? []).filter((d) => d !== null),
+      })),
+  };
+});
