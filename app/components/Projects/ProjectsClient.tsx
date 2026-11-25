@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image, { type StaticImageData } from 'next/image';
 import {
   motion,
@@ -23,6 +23,7 @@ export type Project = {
 const fadeUp = makeFadeUp();
 const rowStagger = containerStagger(0.15, 0);
 
+const TITLE_ID = 'project-dialog-title';
 
 const makeCardReveal = (reduced: boolean): Variants =>
   reduced
@@ -63,6 +64,9 @@ const panelVar = (reduced: boolean): Variants =>
         },
         exit: { opacity: 0, y: 20, scale: 0.98, transition: { duration: 0.2 } },
       };
+
+const FOCUSABLE =
+  'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
 /**
  * The long description is a flat block of "Label: value" lines. A line whose
@@ -107,16 +111,56 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
+  const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
 
   const selected = openIndex === null ? null : projects[openIndex];
 
+  /**
+   * While the dialog is open: move focus into it, keep Tab inside it, stop the
+   * page behind from scrolling, and hand focus back to the card on close.
+   */
   useEffect(() => {
     if (openIndex === null) return;
+
+    const triggeredBy = cardRefs.current[openIndex];
+    closeRef.current?.focus();
+
+    const body = document.body;
+    const previousOverflow = body.style.overflow;
+    body.style.overflow = 'hidden';
+
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpenIndex(null);
+      if (e.key === 'Escape') {
+        setOpenIndex(null);
+        return;
+      }
+      if (e.key !== 'Tab' || !panelRef.current) return;
+
+      const focusable = Array.from(
+        panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE),
+      ).filter((el) => el.offsetParent !== null || el === document.activeElement);
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      body.style.overflow = previousOverflow;
+      triggeredBy?.focus();
+    };
   }, [openIndex]);
 
   return (
@@ -195,6 +239,9 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
                       icon={CardIcon}
                       prefersReducedMotion={prefersReducedMotion ?? false}
                       onOpen={() => setOpenIndex(index)}
+                      buttonRef={(el) => {
+                        cardRefs.current[index] = el;
+                      }}
                     />
                   ) : (
                     <div key={index} />
@@ -220,8 +267,10 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
             <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
             <motion.div
+              ref={panelRef}
               role="dialog"
               aria-modal="true"
+              aria-labelledby={TITLE_ID}
               className="
                 relative w-full h-full
                 sm:h-auto sm:max-h-[90vh] sm:max-w-4xl
@@ -237,13 +286,17 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
               onClick={(e) => e.stopPropagation()}
             >
               <button
+                ref={closeRef}
+                type="button"
                 onClick={() => setOpenIndex(null)}
+                aria-label="Close project details"
                 className="
                   absolute top-3 right-3 sm:top-5 sm:right-5
                   z-50 p-1.5 sm:p-2
                   rounded-full bg-white/15 hover:bg-white/25
                   text-white transition-colors duration-200
                   backdrop-blur-md
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-white
                 "
               >
                 <svg
@@ -289,6 +342,7 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
                 <div className="flex flex-col items-center px-4 py-10 sm:px-10 sm:py-14 lg:px-12 lg:py-16 min-h-full">
                   <div className="text-center mb-8 sm:mb-10 max-w-2xl mx-auto">
                     <h2
+                      id={TITLE_ID}
                       className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 tracking-tight drop-shadow-md"
                     >
                       {selected.name}
@@ -319,11 +373,13 @@ function Card({
   icon,
   prefersReducedMotion,
   onOpen,
+  buttonRef,
 }: {
   project: Project;
   icon: StaticImageData;
   prefersReducedMotion: boolean;
   onOpen: () => void;
+  buttonRef: (el: HTMLButtonElement | null) => void;
 }) {
   const cardReveal = makeCardReveal(prefersReducedMotion);
 
@@ -339,12 +395,17 @@ function Card({
         text-foreground
         transition-all duration-300
         hover:bg-[color:var(--color-s-text)]
+        has-[:focus-visible]:bg-[color:var(--color-s-text)]
+        has-[:focus-visible]:border-transparent
+        has-[:focus-visible]:ring-2
+        has-[:focus-visible]:ring-[color:var(--color-s-text)]
+        has-[:focus-visible]:ring-offset-2
+        has-[:focus-visible]:ring-offset-background
         cursor-pointer
       "
       whileHover={!prefersReducedMotion ? { y: -4 } : undefined}
-      onClick={onOpen}
     >
-      <div className="absolute right-2 top-2 sm:right-3 sm:top-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute right-2 top-2 sm:right-3 sm:top-3 opacity-0 group-hover:opacity-100 group-has-[:focus-visible]:opacity-100 transition-opacity duration-300">
         <Image
           src={icon}
           alt=""
@@ -354,11 +415,23 @@ function Card({
         />
       </div>
 
-      <h3 className="text-[16px] sm:text-[20px] md:text-[24px] font-semibold leading-tight my-3 sm:my-4 md:my-5 transition-colors duration-300 group-hover:text-white">
-        {project.name}
+      <h3 className="text-[16px] sm:text-[20px] md:text-[24px] font-semibold leading-tight my-3 sm:my-4 md:my-5 transition-colors duration-300 group-hover:text-white group-has-[:focus-visible]:text-white">
+        {/*
+          The button carries the whole card's click target via a stretched
+          pseudo-element, so the accessible name stays just the project title
+          while the full card remains clickable.
+        */}
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={onOpen}
+          className="text-left before:absolute before:inset-0 before:content-[''] focus:outline-none"
+        >
+          {project.name}
+        </button>
       </h3>
 
-      <p className="text-[14px] sm:text-[16px] md:text-[18px] leading-relaxed transition-colors duration-300 group-hover:text-white">
+      <p className="text-[14px] sm:text-[16px] md:text-[18px] leading-relaxed transition-colors duration-300 group-hover:text-white group-has-[:focus-visible]:text-white">
         {project.short}
       </p>
     </motion.div>
