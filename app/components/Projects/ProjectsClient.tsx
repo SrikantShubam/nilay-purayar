@@ -17,7 +17,12 @@ import { StaggerText, containerStagger, makeFadeUp } from '../motion';
 export type Project = {
   name: string;
   short: string;
-  long: string;
+  domain: string;
+  tools: string;
+  role: string;
+  overview: string;
+  highlights: string[];
+  outcome: string;
 };
 
 const fadeUp = makeFadeUp();
@@ -68,43 +73,72 @@ const panelVar = (reduced: boolean): Variants =>
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
+function Section({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-6 last:mb-0 text-center">
+      <div className="font-bold text-xs sm:text-sm md:text-[15px] uppercase tracking-widest text-white/80 mb-2 drop-shadow-md">
+        {label}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function Line({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed text-white font-medium drop-shadow-sm">
+      {children}
+    </p>
+  );
+}
+
 /**
- * The long description is a flat block of "Label: value" lines. A line whose
- * first word ends in a colon renders as a section label, everything else as a
- * paragraph. Structured Tina fields will replace this.
+ * Renders the structured fields in the order they were authored:
+ * Domain, Tools, Role (rare), Overview, Highlights, Outcome (usually).
+ * Role and Outcome are skipped when empty.
  */
-function renderLongDesc(text: string) {
-  if (!text) return null;
-  return text
-    .split('\n')
-    .filter((line) => line.trim())
-    .map((line, i) => {
-      const trimmed = line.trim();
-      if (trimmed.includes(':') && trimmed.match(/^[A-Z][a-z]+:/)) {
-        const [label, ...contentParts] = trimmed.split(':');
-        const content = contentParts.join(':').trim();
-        return (
-          <div key={i} className="mb-6 last:mb-0 text-center">
-            <div className="font-bold text-xs sm:text-sm md:text-[15px] uppercase tracking-widest text-white/80 mb-2 drop-shadow-md">
-              {label.trim()}
-            </div>
-            {content ? (
-              <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed text-white font-medium drop-shadow-sm">
-                {content}
-              </p>
-            ) : null}
-          </div>
-        );
-      }
-      return (
-        <p
-          key={i}
-          className="text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed mb-4 last:mb-0 text-white/90 text-center drop-shadow-sm"
-        >
-          {trimmed}
-        </p>
-      );
-    });
+function ProjectDetail({ project }: { project: Project }) {
+  return (
+    <>
+      {project.domain ? (
+        <Section label="Domain">
+          <Line>{project.domain}</Line>
+        </Section>
+      ) : null}
+      {project.tools ? (
+        <Section label="Tools">
+          <Line>{project.tools}</Line>
+        </Section>
+      ) : null}
+      {project.role ? (
+        <Section label="Role">
+          <Line>{project.role}</Line>
+        </Section>
+      ) : null}
+      {project.overview ? (
+        <Section label="Overview">
+          <Line>{project.overview}</Line>
+        </Section>
+      ) : null}
+      {project.highlights.length > 0 ? (
+        <Section label="Highlights">
+          {project.highlights.map((h, i) => (
+            <p
+              key={i}
+              className="text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed mb-4 last:mb-0 text-white/90 text-center drop-shadow-sm"
+            >
+              {h}
+            </p>
+          ))}
+        </Section>
+      ) : null}
+      {project.outcome ? (
+        <Section label="Outcome">
+          <Line>{project.outcome}</Line>
+        </Section>
+      ) : null}
+    </>
+  );
 }
 
 export default function ProjectsClient({ projects }: { projects: Project[] }) {
@@ -354,7 +388,7 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
                   </div>
 
                   <div className="prose prose-sm sm:prose-base md:prose-lg prose-invert text-center max-w-3xl mx-auto">
-                    {renderLongDesc(selected.long)}
+                    <ProjectDetail project={selected} />
                   </div>
 
                   <div className="h-10 sm:h-14" />

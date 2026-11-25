@@ -11,7 +11,12 @@ export default async function Projects() {
     .map((item) => ({
       name: item.project_name,
       short: item.short_description ?? '',
-      long: item.long_description ?? '',
+      domain: item.domain ?? '',
+      tools: item.tools ?? '',
+      role: item.role ?? '',
+      overview: item.overview ?? '',
+      highlights: (item.highlights ?? []).filter((h) => h !== null),
+      outcome: item.outcome ?? '',
     }));
 
   return <ProjectsClient projects={projects} />;
