@@ -4,10 +4,11 @@ import Image from 'next/image';
 import { motion, cubicBezier } from 'framer-motion';
 import AboutHero from '@/public/images/about.png';
 import { StaggerText, makeFadeUp } from './motion';
+import type { AboutContent } from '@/app/lib/content';
 
 const fadeUp = makeFadeUp({ ease: cubicBezier(0.16, 1, 0.3, 1) });
 
-export default function About() {
+export default function About({ content }: { content: AboutContent }) {
   return (
     <section id="about" className="w-full py-32">
       <div className="mx-auto space-y-14 text-foreground">
@@ -58,7 +59,7 @@ export default function About() {
           >
             <StaggerText
               as="span"
-              text="Data. Strategy. Impact."
+              text={content.tagline}
               className="text-[22px] sm:text-[28px] md:text-[33px] font-medium text-[color:var(--color-s-text)] pt-20 "
             />
           </motion.div>
@@ -73,12 +74,12 @@ export default function About() {
           viewport={{ once: true, amount: 0.6 }}
         >
           <span className="block md:inline text-[20px] sm:text-[28px] md:text-[25px] uppercase">
-            Quick Info&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            {content.label}&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           </span>
           <StaggerText
             as="span"
             className="text-[24px] sm:text-[32px] md:text-[48px]"
-            text="I’m Nilay Purayar, a data scientist and business analyst passionate about translating complex data into measurable impact."
+            text={content.text}
           />
         </motion.h2>
       </div>

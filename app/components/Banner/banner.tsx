@@ -4,10 +4,11 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import StarImg from '@/public/images/star.png';
 import { StaggerText, containerStagger, makeFadeUp, wordVariant } from '../motion';
+import type { BannerContent } from '@/app/lib/content';
 
 const fadeUp = makeFadeUp({ y: 24, blur: 6, duration: 0.8 });
 
-export default function Banner() {
+export default function Banner({ content }: { content: BannerContent }) {
   return (
     <motion.section
       id="home"
@@ -55,7 +56,7 @@ export default function Banner() {
         <motion.div variants={fadeUp} className="flex h-full flex-col justify-end">
           <StaggerText
             as="h1"
-            text="Nilay Purayar"
+            text={content.name}
             className="text-[30px] md:text-[57px] font-medium text-foreground leading-tight"
             animateWords
             stagger={0.06}
@@ -68,7 +69,7 @@ export default function Banner() {
           <p className="relative text-[18px] md:text-[28px] font-poppins font-regular leading-relaxed md:leading-[1.5] text-foreground">
             <StaggerText
               as="span"
-              text="Turning complex data into actionable insights across finance, strategy, and innovation — I’m Nilay Purayar, a data scientist and business analyst passionate about transforming ideas into"
+              text={content.heroText}
               animateWords
               stagger={0.06}
               delayChildren={0.05}
@@ -78,7 +79,7 @@ export default function Banner() {
               className="relative inline-block text-[color:var(--color-s-text)] font-medium"
               variants={wordVariant}
             >
-              measurable impact.
+              {content.highlightedText}
             </motion.span>
           </p>
         </motion.div>

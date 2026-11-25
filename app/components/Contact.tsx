@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import ContactLogo from '@/public/images/connect.png';
 import { StaggerText, containerStagger, makeFadeUp } from './motion';
 import type { SocialLink } from '@/app/lib/settings';
+import type { ContactContent } from '@/app/lib/content';
 
 const fadeUp = makeFadeUp();
 
@@ -25,7 +26,7 @@ function ChevronRightIcon({ className = '' }: { className?: string }) {
 }
 
 
-function Contact({ socials }: { socials: SocialLink[] }) {
+function Contact({ socials, content }: { socials: SocialLink[]; content: ContactContent }) {
 
   return (
     <section id="contact" className="w-full py-32">
@@ -72,12 +73,12 @@ function Contact({ socials }: { socials: SocialLink[] }) {
           viewport={{ once: true, amount: 0.6 }}
         >
           <span className="block md:inline text-[20px] sm:text-[28px] md:text-[25px] uppercase">
-            CONNECT WITH ME&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            {content.label}&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           </span>
           <StaggerText
             as="span"
             className="text-[24px] sm:text-[32px] md:text-[48px]"
-            text="Always open to new conversations, collaborations, and opportunities — let’s connect!."
+            text={content.text}
           />
         </motion.h2>
 
