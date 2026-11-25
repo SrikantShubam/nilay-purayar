@@ -189,6 +189,7 @@ export default defineConfig({
         format: "md",
         ui: { allowedActions: { create: false, delete: false } },
         fields: [
+          { type: "string", name: "heading", label: "Section heading" },
           {
             type: "object",
             name: "work",
@@ -201,11 +202,17 @@ export default defineConfig({
                     ? `${item.title} — ${item.company}`
                     : "New Work Item",
               }),
-              defaultItem: { title: "", company: "", description: "" },
+              defaultItem: { title: "", company: "", dates: "", description: "" },
             },
             fields: [
               { type: "string", name: "title", label: "Position Title", required: true },
               { type: "string", name: "company", label: "Company Name", required: true },
+              {
+                type: "string",
+                name: "dates",
+                label: "Dates",
+                description: "For example: October 2026 - Present",
+              },
               {
                 type: "string",
                 name: "description",
