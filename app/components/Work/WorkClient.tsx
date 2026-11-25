@@ -252,7 +252,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion, easeOut } from 'framer-motion';
-import XpIcon from '@/public/xp.png';
+import XpIcon from '@/public/images/xp.png';
 
 interface WorkItem {
   title: string;
@@ -293,7 +293,7 @@ function StaggerText({
   viewportAmount = 0.6,
 }: {
   text: string;
-  as?: any;
+  as?: React.ElementType;
   className?: string;
   by?: 'word' | 'char';
   viewportAmount?: number;

@@ -302,7 +302,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
-import StarImg from '@/public/nilay star.png';
+import StarImg from '@/public/images/star.png';
 
 /* ===== Animation Variants ===== */
 const fadeUp = {
@@ -342,7 +342,7 @@ function StaggerText({
   viewportAmount = 0.6,
 }: {
   text: string;
-  as?: any;
+  as?: React.ElementType;
   className?: string;
   by?: 'word' | 'char';
   viewportAmount?: number;
@@ -417,7 +417,7 @@ export default function Banner() {
         {/* Left Column */}
         <motion.div variants={fadeUp} className="flex h-full flex-col justify-end">
           <StaggerText
-            as="h2"
+            as="h1"
             text="Nilay Purayar"
             className="text-[30px] md:text-[57px] font-medium text-foreground leading-tight"
           />

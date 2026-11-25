@@ -250,8 +250,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion, type Variants } from "framer-motion";
-import AboutHero from '@/public/about me.png';
-import RiderImg from '@/public/nilay rider provider.png';
+import AboutHero from '@/public/images/about.png';
 
 
 /* ===== Animation presets ===== */
@@ -274,15 +273,6 @@ const fadeUp: Variants = {
 };
 
 
-const fadeIn = {
-  hidden: { opacity: 0, filter: 'blur(4px)' },
-  show: {
-    opacity: 1,
-    filter: 'blur(0px)',
-    transition: { duration: 1.2, ease: 'easeOut' },
-  },
-};
-
 const containerStagger = (stagger = 0.1, delayChildren = 0.2) => ({
   hidden: { opacity: 1 },
   show: {
@@ -291,15 +281,6 @@ const containerStagger = (stagger = 0.1, delayChildren = 0.2) => ({
   },
 });
 
-const wordVariant = {
-  hidden: { opacity: 0, y: 10, filter: 'blur(6px)' },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
-};
 
 /* ===== Reusable staggered text ===== */
 function StaggerText({
@@ -310,7 +291,7 @@ function StaggerText({
   viewportAmount = 0.6,
 }: {
   text: string;
-  as?: any;
+  as?: React.ElementType;
   className?: string;
   by?: 'word' | 'char';
   viewportAmount?: number;

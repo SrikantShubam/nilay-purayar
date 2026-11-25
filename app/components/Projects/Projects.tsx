@@ -499,11 +499,11 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import client from '@/tina/__generated__/client';
-import AboutHero from '@/public/projects.png';
-import SmallIcon from '@/public/active state projects.png';
+import AboutHero from '@/public/images/projects.png';
+import SmallIcon from '@/public/images/project-card-icon.png';
 
 /* ===== Animation presets ===== */
 const fadeUp = {
@@ -591,7 +591,7 @@ function StaggerText({
   viewportAmount = 0.6,
 }: {
   text: string;
-  as?: any;
+  as?: React.ElementType;
   className?: string;
   by?: 'word' | 'char';
   viewportAmount?: number;
@@ -674,7 +674,7 @@ export default function Projects() {
     (async () => {
       try {
         const res = await client.queries.projects({ relativePath: 'projects.md' });
-        const list: ProjectItem[] = (res as any)?.data?.projects?.projects ?? [];
+        const list: ProjectItem[] = res?.data?.projects?.projects ?? [];
         setProjects(list);
       } catch (e) {
         console.error('Failed to load projects from Tina:', e);
@@ -683,11 +683,11 @@ export default function Projects() {
   }, []);
 
   const getName = (p: ProjectItem) =>
-    p.project_name ?? (p as any)['project-name'] ?? '';
+    p.project_name ?? p['project-name'] ?? '';
   const getShort = (p: ProjectItem) =>
-    p.short_description ?? (p as any)['short-description'] ?? '';
+    p.short_description ?? p['short-description'] ?? '';
   const getLong = (p: ProjectItem) =>
-    p.long_description ?? (p as any)['long-description'] ?? '';
+    p.long_description ?? p['long-description'] ?? '';
 
   const onKey = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') setSelected(null);
@@ -942,7 +942,7 @@ function Card({
 }: {
   title: string;
   short: string;
-  icon: any;
+  icon: StaticImageData;
   prefersReducedMotion: boolean;
   onOpen: () => void;
 }) {

@@ -152,7 +152,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import ContactLogo from '@/public/connect .png';
+import ContactLogo from '@/public/images/connect.png';
 import Link from 'next/link';
 
 /* ===== Animation presets ===== */
@@ -304,7 +304,7 @@ function Contact() {
           className="mx-auto w-full max-w-3xl px-4"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            {socials.map((s, idx) => (
+            {socials.map((s) => (
               <motion.div
                 key={s.name}
                 variants={fadeUp}
