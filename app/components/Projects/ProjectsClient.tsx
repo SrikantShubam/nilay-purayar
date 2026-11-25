@@ -107,7 +107,25 @@ function ProjectDetail({ project }: { project: Project }) {
       ) : null}
       {project.tools ? (
         <Section label="Tools">
-          <Line>{project.tools}</Line>
+          {/*
+            Split on commas only. No tool name contains one, so each chip
+            keeps its exact wording, including entries like
+            "Python (Clustering & Regression)".
+          */}
+          <ul className="flex flex-wrap justify-center gap-2">
+            {project.tools
+              .split(',')
+              .map((t) => t.trim())
+              .filter(Boolean)
+              .map((tool) => (
+                <li
+                  key={tool}
+                  className="inline-flex items-center rounded-full border border-white/40 bg-white/10 px-3 py-1.5 text-[14px] sm:text-[15px] font-medium text-white drop-shadow-sm"
+                >
+                  {tool}
+                </li>
+              ))}
+          </ul>
         </Section>
       ) : null}
       {project.role ? (
