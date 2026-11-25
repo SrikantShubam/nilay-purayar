@@ -10,7 +10,9 @@ const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nilaypurayar.com"), // update if hosted elsewhere
+  // Live host. Swap to the custom domain once it actually resolves; every
+  // relative URL below (canonical, og:image) is built from this.
+  metadataBase: new URL("https://nilay-purayar.vercel.app"),
   title: {
     default: "Nilay Purayar | Data Science, Analytics & Strategy Portfolio",
     template: "%s | Nilay Purayar",
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
     "data-driven strategy",
     "AI product development",
   ],
-  authors: [{ name: "Nilay Purayar", url: "https://nilaypurayar.com" }],
+  authors: [{ name: "Nilay Purayar", url: "https://nilay-purayar.vercel.app" }],
   creator: "Nilay Purayar",
   publisher: "Nilay Purayar",
   robots: {
@@ -41,21 +43,23 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://nilaypurayar.com",
+    canonical: "https://nilay-purayar.vercel.app",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nilaypurayar.com",
+    url: "https://nilay-purayar.vercel.app",
     title: "Nilay Purayar | Data Science, Analytics & Strategy Portfolio",
     description:
       "Explore projects that boost trading accuracy, reporting efficiency, and strategic decision-making through data-driven insights.",
     siteName: "Nilay Purayar Portfolio",
     images: [
       {
-        url: "/projects.png", // replace with a 1200x630 OG image
-        width: 1200,
-        height: 630,
+        // projects.png is only 200x200. Dimensions below are declared
+        // honestly; a proper 1200x630 share image is a design-step task.
+        url: "/images/projects.png",
+        width: 200,
+        height: 200,
         alt: "Nilay Purayar Portfolio preview",
       },
     ],
@@ -65,8 +69,7 @@ export const metadata: Metadata = {
     title: "Nilay Purayar | Data Science, Analytics & Strategy Portfolio",
     description:
       "Data scientist & analyst delivering measurable impact via predictive models, dashboards, and AI solutions.",
-    creator: "@SrikantShubham", // update with real X handle
-    images: ["/projects.png"],
+    images: ["/images/projects.png"],
   },
   icons: {
     icon: [
