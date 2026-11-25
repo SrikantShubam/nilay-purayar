@@ -30,6 +30,113 @@ export default defineConfig({
   schema: {
     collections: [
       {
+        name: "settings",
+        label: "Site Settings",
+        path: "content/settings",
+        format: "md",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          {
+            type: "object",
+            name: "seo",
+            label: "SEO and sharing",
+            fields: [
+              {
+                type: "string",
+                name: "site_url",
+                label: "Site URL",
+                description:
+                  "Used for the canonical link and share previews. Falls back to the Vercel address if this is not a valid https URL.",
+              },
+              { type: "string", name: "title", label: "Browser tab title" },
+              { type: "string", name: "site_name", label: "Site name" },
+              {
+                type: "string",
+                name: "description",
+                label: "Search description",
+                ui: { component: "textarea" },
+              },
+              { type: "string", name: "keywords", label: "Keywords", list: true },
+              {
+                type: "string",
+                name: "share_description",
+                label: "Share description",
+                description: "Shown when the link is posted on social sites.",
+                ui: { component: "textarea" },
+              },
+              { type: "image", name: "share_image", label: "Share image", accept: "image" },
+              { type: "string", name: "share_image_alt", label: "Share image alt text" },
+              {
+                type: "string",
+                name: "x_handle",
+                label: "X handle",
+                description: "Optional, including the @.",
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "navbar",
+            label: "Navbar",
+            fields: [
+              { type: "string", name: "logo_text", label: "Logo text" },
+              {
+                type: "object",
+                name: "menu_items",
+                label: "Menu items",
+                list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.label || "New menu item" }),
+                },
+                fields: [
+                  { type: "string", name: "label", label: "Label" },
+                  {
+                    type: "string",
+                    name: "section",
+                    label: "Section",
+                    options: ["home", "about", "work", "projects", "contact"],
+                  },
+                ],
+              },
+              { type: "string", name: "resume_label", label: "Resume button label" },
+              {
+                type: "image",
+                name: "resume_file",
+                label: "Resume file",
+                description: "Upload a PDF. The Resume button always serves this file.",
+                accept: "pdf",
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "socials",
+            label: "Social links",
+            list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.label || "New link" }),
+            },
+            fields: [
+              { type: "string", name: "label", label: "Label" },
+              { type: "string", name: "url", label: "URL" },
+              { type: "boolean", name: "show_in_contact", label: "Show in Contact" },
+              { type: "boolean", name: "show_in_footer", label: "Show in Footer" },
+            ],
+          },
+          { type: "string", name: "email", label: "Email address" },
+          {
+            type: "object",
+            name: "footer",
+            label: "Footer",
+            fields: [
+              { type: "string", name: "credit_text", label: "Credit text" },
+              { type: "string", name: "credit_name", label: "Credit name" },
+              { type: "string", name: "credit_url", label: "Credit URL" },
+            ],
+          },
+        ],
+      },
+      {
         name: "work",
         label: "Work Section",
         path: "content/work",
