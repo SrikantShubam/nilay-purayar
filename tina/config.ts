@@ -183,6 +183,66 @@ export default defineConfig({
         ],
       },
       {
+        name: "education",
+        label: "Education Section",
+        path: "content/education",
+        format: "md",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "heading", label: "Section heading" },
+          {
+            type: "object",
+            name: "entries",
+            label: "Entries",
+            list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.school || "New entry" }),
+              defaultItem: { school: "", degree: "", dates: "", details: [] },
+            },
+            fields: [
+              { type: "string", name: "school", label: "School" },
+              { type: "string", name: "degree", label: "Degree" },
+              { type: "string", name: "dates", label: "Dates" },
+              {
+                type: "string",
+                name: "details",
+                label: "Details",
+                list: true,
+                ui: { component: "textarea" },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "skill",
+        label: "Skills",
+        path: "content/skills",
+        format: "md",
+        fields: [
+          { type: "string", name: "name", label: "Name", required: true, isTitle: true },
+          {
+            type: "string",
+            name: "group",
+            label: "Group",
+            options: [
+              "Languages and Querying",
+              "Machine Learning and AI",
+              "Data and Databases",
+              "BI and Visualisation",
+              "Apps and APIs",
+              "Business and Strategy",
+            ],
+          },
+          {
+            type: "number",
+            name: "order",
+            label: "Order",
+            description: "Lower numbers come first inside a group.",
+          },
+        ],
+      },
+      {
         name: "work",
         label: "Work Section",
         path: "content/work",
