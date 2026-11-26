@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import PageIntro from '../components/layout/PageIntro';
 import PageNav from '../components/layout/PageNav';
 import TwoPane from '../components/layout/TwoPane';
-import ChannelIcon, { channelAccent, channelStroke } from '../components/ui/ChannelIcon';
+import ChannelIcon, { channelAccent, channelInk } from '../components/ui/ChannelIcon';
 import { getPage } from '../lib/content';
 import { getSettings } from '../lib/settings';
 
@@ -95,7 +95,7 @@ export default async function ContactPage() {
                   </span>
                   <span
                     className="label text-xs font-semibold"
-                    style={{ color: channelStroke(channel.label) }}
+                    style={{ color: channelInk(channel.label) }}
                   >
                     {channel.actionLabel} →
                   </span>
