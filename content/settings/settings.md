@@ -1,7 +1,7 @@
 ---
 seo:
   site_url: https://nilay-purayar.vercel.app
-  title: Nilay Purayar | Data Science, Analytics & Strategy Portfolio
+  title: Nilay Purayar
   site_name: Nilay Purayar Portfolio
   description: Nilay Purayar is a data scientist and analyst translating complex datasets into measurable business impact across finance, marketing, and AI products.
   keywords:

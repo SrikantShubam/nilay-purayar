@@ -39,9 +39,11 @@ export async function generateMetadata(): Promise<Metadata> {
     // getSettings falls back to the Vercel address if the Site Settings site
     // URL is missing or not a usable https address.
     metadataBase: new URL(seo.siteUrl),
+    // Overview keeps the name on its own. Every other page appends its
+    // section, so a tab reads "Nilay Purayar | Education".
     title: {
       default: seo.title,
-      template: `%s | ${seo.siteName}`,
+      template: `${seo.title} | %s`,
     },
     description: seo.description,
     keywords: seo.keywords,
