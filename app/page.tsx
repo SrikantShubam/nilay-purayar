@@ -64,15 +64,19 @@ export default async function OverviewPage() {
           ) : null}
 
           <div className="mb-7 flex flex-wrap items-end gap-6">
-            <div className="flex-[0_0_148px]">
-              <div className="relative aspect-square border-b-[5px] border-red bg-navy">
+            <div className="flex-[0_0_148px] sm:flex-[0_0_168px]">
+              {/* Portrait frame, because a headshot squeezed into a square
+                  gets its crown and its shoulders cut off. At 3:4 a normal
+                  portrait loses barely anything, and object-top means any
+                  crop that is needed comes off the bottom, never the face. */}
+              <div className="relative aspect-[3/4] border-b-[5px] border-red bg-navy">
                 {banner.photo ? (
                   <Image
                     src={banner.photo}
                     alt={banner.photoAlt}
                     fill
-                    sizes="148px"
-                    className="object-cover"
+                    sizes="(min-width: 640px) 168px, 148px"
+                    className="object-cover object-top"
                     priority
                   />
                 ) : (
