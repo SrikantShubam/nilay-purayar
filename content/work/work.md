@@ -1,5 +1,5 @@
 ---
-heading: Work Experience
+heading: Experience
 work:
   - title: Global Data Insights and Innovation Intern
     company: CEVA Logistics

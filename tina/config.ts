@@ -244,7 +244,7 @@ export default defineConfig({
       },
       {
         name: "work",
-        label: "Work Section",
+        label: "Experience Section",
         path: "content/work",
         format: "md",
         ui: { allowedActions: { create: false, delete: false } },
@@ -253,7 +253,7 @@ export default defineConfig({
           {
             type: "object",
             name: "work",
-            label: "Work Experience",
+            label: "Experience",
             list: true,
             ui: {
               itemProps: (item) => ({

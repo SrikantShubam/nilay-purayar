@@ -19,7 +19,7 @@ seo:
 navbar:
   logo_text: N_P
   menu_items:
-    - label: Work
+    - label: Experience
       section: work
     - label: Projects
       section: projects
