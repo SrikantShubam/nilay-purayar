@@ -33,7 +33,7 @@ export default function PageIntro({
       ) : null}
 
       {page.stats.length > 0 ? (
-        <div className="mb-7 flex gap-8 border-y border-loblolly py-5">
+        <div className="mb-7 flex flex-wrap gap-x-8 gap-y-4 border-y border-loblolly py-5">
           {page.stats.map((stat) => (
             <div key={stat.label}>
               <div

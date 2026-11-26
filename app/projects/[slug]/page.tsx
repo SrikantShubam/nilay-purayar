@@ -89,7 +89,7 @@ export default async function ProjectDetailPage({
 
           <div className="border border-loblolly">
             {rows.map((row) => (
-              <div key={row.label} className="flex gap-4 border-b border-rule p-4">
+              <div key={row.label} className="flex flex-wrap gap-x-4 gap-y-1 border-b border-rule p-4">
                 <span className="label flex-[0_0_96px] text-[11px] text-gunmetal">{row.label}</span>
                 <span className="min-w-0 flex-[1_1_auto] text-[15px] font-semibold">
                   {row.value}
@@ -99,7 +99,7 @@ export default async function ProjectDetailPage({
             {counts.map((row, index) => (
               <div
                 key={row.label}
-                className={`flex gap-4 p-4 ${index === 0 ? 'border-b border-rule' : ''}`}
+                className={`flex flex-wrap gap-x-4 gap-y-1 p-4 ${index === 0 ? 'border-b border-rule' : ''}`}
               >
                 <span className="label flex-[0_0_96px] text-[11px] text-gunmetal">{row.label}</span>
                 <span

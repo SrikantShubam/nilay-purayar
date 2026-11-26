@@ -76,7 +76,7 @@ export default async function ContactPage() {
                 <a
                   href={channel.href}
                   {...(channel.external ? { target: '_blank', rel: 'noopener' } : {})}
-                  className="chan flex flex-wrap items-center gap-5 border border-rule border-l-4 px-[22px] py-5"
+                  className="chan flex flex-wrap items-center gap-4 border border-rule border-l-4 px-4 py-4 sm:gap-5 sm:px-[22px] sm:py-5"
                   style={{ borderLeftColor: channelAccent(channel.label) }}
                 >
                   <span
@@ -85,11 +85,11 @@ export default async function ContactPage() {
                   >
                     <ChannelIcon label={channel.label} />
                   </span>
-                  <span className="min-w-0 flex-[1_1_220px]">
+                  <span className="min-w-0 flex-[1_1_140px] sm:flex-[1_1_220px]">
                     <span className="label mb-0.5 block text-[11px] text-gunmetal">
                       {channel.label}
                     </span>
-                    <span className="break-words text-[19px] font-semibold sm:text-[21px]">
+                    <span className="break-words text-[17px] font-semibold sm:text-[21px]">
                       {channel.handle}
                     </span>
                   </span>

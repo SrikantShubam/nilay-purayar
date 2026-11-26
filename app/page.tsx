@@ -150,7 +150,7 @@ export default async function OverviewPage() {
               {highlights.map((row, index) => (
                 <div
                   key={row.label}
-                  className={`tile flex flex-wrap gap-5 p-[22px] ${
+                  className={`tile flex flex-wrap gap-5 p-4 sm:p-[22px] ${
                     index < highlights.length - 1 ? 'border-b border-rule' : ''
                   }`}
                 >
