@@ -1,6 +1,5 @@
 ---
 name: Neural Networks
 group: Machine Learning and AI
-order: 9
+order: 7
 ---
-

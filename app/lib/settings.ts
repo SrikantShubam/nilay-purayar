@@ -36,6 +36,8 @@ export type SeoSettings = {
 export type SocialLink = {
   label: string;
   href: string;
+  handle: string;
+  actionLabel: string;
 };
 
 export type NavItem = {
@@ -51,15 +53,23 @@ export type NavbarSettings = {
 };
 
 export type FooterSettings = {
+  heading: string;
+  note: string;
   creditText: string;
   creditName: string;
   creditUrl: string;
+};
+
+export type ProfileSettings = {
+  location: string;
+  coordinates: string;
 };
 
 export type SiteSettings = {
   seo: SeoSettings;
   email: string;
   navbar: NavbarSettings;
+  profile: ProfileSettings;
   contactSocials: SocialLink[];
   footerSocials: SocialLink[];
   footer: FooterSettings;
@@ -76,14 +86,17 @@ export const getSettings = cache(async (): Promise<SiteSettings> => {
   const email = s.email ?? '';
   const socials = (s.socials ?? []).filter((x) => x !== null);
 
-  const toLink = (x: { label?: string | null; url?: string | null }): SocialLink => ({
+  const toLink = (x: {
+    label?: string | null;
+    url?: string | null;
+    handle?: string | null;
+    action_label?: string | null;
+  }): SocialLink => ({
     label: x.label ?? '',
     href: x.url ?? '',
+    handle: x.handle ?? '',
+    actionLabel: x.action_label ?? 'Open',
   });
-
-  // Email is its own field rather than a social link, but it is shown in the
-  // same lists, always last.
-  const emailLink: SocialLink[] = email ? [{ label: 'Email', href: `mailto:${email}` }] : [];
 
   return {
     seo: {
@@ -104,14 +117,20 @@ export const getSettings = cache(async (): Promise<SiteSettings> => {
         .filter((item) => item !== null)
         .map((item) => ({
           label: item.label ?? '',
-          href: `#${item.section ?? ''}`,
+          href: item.href ?? '/',
         })),
       resumeLabel: s.navbar?.resume_label ?? '',
       resumeHref: s.navbar?.resume_file ?? '',
     },
-    contactSocials: [...socials.filter((x) => x.show_in_contact).map(toLink), ...emailLink],
-    footerSocials: [...socials.filter((x) => x.show_in_footer).map(toLink), ...emailLink],
+    profile: {
+      location: s.profile?.location ?? '',
+      coordinates: s.profile?.coordinates ?? '',
+    },
+    contactSocials: socials.filter((x) => x.show_in_contact).map(toLink),
+    footerSocials: socials.filter((x) => x.show_in_footer).map(toLink),
     footer: {
+      heading: s.footer?.heading ?? '',
+      note: s.footer?.note ?? '',
       creditText: s.footer?.credit_text ?? '',
       creditName: s.footer?.credit_name ?? '',
       creditUrl: s.footer?.credit_url ?? '',

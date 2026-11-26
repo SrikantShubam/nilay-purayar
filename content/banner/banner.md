@@ -1,6 +1,22 @@
 ---
-name: Nilay Purayar
-hero_text: 'A data and business analyst working on analytics, reporting and AI projects at CEVA Logistics in Marseille. Most of what I do comes down to turning data into'
-highlighted_text: decisions teams can act on.
----
+label: Profile 2027
+name: 'Nilay
 
+  Purayar'
+photo: ''
+photo_alt: Nilay Purayar
+intro: Data and business analyst. Analytics, reporting and AI projects at CEVA Logistics in Marseille, finishing an MSc at ESSEC and CentraleSupélec.
+strengths:
+- label: Analytics & reporting
+  note: Primary
+  percent: 92
+  accent: navy
+- label: Data engineering
+  note: Strong
+  percent: 74
+  accent: blue
+- label: AI & machine learning
+  note: Strong
+  percent: 68
+  accent: red
+---

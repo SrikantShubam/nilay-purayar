@@ -1,6 +1,5 @@
 ---
 name: Regression
 group: Machine Learning and AI
-order: 6
+order: 4
 ---
-

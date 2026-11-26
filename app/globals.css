@@ -1,96 +1,293 @@
 @import "tailwindcss";
 
+/* BMW Motorsport palette. Blue Shine and Strong Red are accent only: neither
+   clears 4.5:1 against the page white, so body copy stays navy or gunmetal. */
 :root {
-  --background: #E6D9CC;
-  --foreground: #453218;
-  --s-text: #CF6345;
-  box-sizing: border-box !important;
+  --navy: #031e49;
+  --blue: #4599fe;
+  --red: #ee0405;
+  --white: #fffdfe;
+  --gunmetal: #2d4046;
+  --loblolly: #b8cad1;
+  --rule: #e2e8ec;
+  --track: #e8eef2;
+  --red-tint: #fff5f5;
 }
 
-html {
-  scroll-behavior: smooth;
+@theme inline {
+  --color-navy: var(--navy);
+  --color-blue: var(--blue);
+  --color-red: var(--red);
+  --color-white: var(--white);
+  --color-gunmetal: var(--gunmetal);
+  --color-loblolly: var(--loblolly);
+  --color-rule: var(--rule);
+  --color-track: var(--track);
+  --color-red-tint: var(--red-tint);
+
+  --font-sans: var(--font-barlow);
+  --font-condensed: var(--font-barlow-condensed);
+  --font-semicondensed: var(--font-barlow-semicondensed);
+}
+
+/* Element defaults go in the base layer so a utility class on a heading or a
+   link still wins. Unlayered rules here would beat every utility, which
+   silently flattened heading margins and link colours. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* The sticky header is 68px tall, so anchors land below it. */
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-barlow), Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-barlow), Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  a {
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--blue);
+  }
+
+  nav a {
+    font-family: var(--font-barlow-semicondensed), Arial, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Type helpers. Also layered, so font-semibold and the colour utilities can
+   override the defaults set here. */
+@layer components {
+  .label,
+  .tag {
+    font-family: var(--font-barlow-semicondensed), Arial, sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .stat-number {
+    font-family: var(--font-barlow-condensed), Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .display {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .display-condensed {
+    font-family: var(--font-barlow-condensed), Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+}
+
+/* ----------------------------------------------------------- animation */
+
+@keyframes fillBar {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bar {
+  animation: fillBar 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.rise {
+  animation: riseIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-}
-
-body {
-  margin: 0;
-  padding: 0;
-
-  @apply bg-background text-foreground font-sans;
-  overflow-x: hidden;
-  width: 100%;
-}
-
-/* Tailwind theme inline override */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-s-text: var(--s-text) !important;
-
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-geist-mono);
-}
-
-/* html{
-  background-color:pink!important
-} */
-/* Global base styling */
-p {
-  line-height: 1.6;
-}
-
-.tina-editor {
-  font-family: var(--font-poppins), sans-serif;
-}
-
-.hr {
-  /* border-l border-[#C2B5A8]/70 border-dashed rounded-full */
-
-  /* border-color: #C2B5A8 0.7 border-dashed; */
-  border-top: #c2b5a8 1px dashed;
-}
-
-.hrb {
-  /* border-l border-[#C2B5A8]/70 border-dashed rounded-full */
-
-  /* border-color: #C2B5A8 0.7 border-dashed; */
-  border-top: #c2b5a8 1px dashed;
-  border-bottom: #c2b5a8 1px dashed;
-}
-
-.hb {
-  border-bottom: #c2b5a8 1px dashed;
-}
-
-/* Shared gutter utility to keep full-width elements aligned with body padding */
-.container-fluid {
-  @apply w-full mx-auto;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-@media (min-width: 375px) {
-  .container-fluid {
-    padding-left: 16px;
-    padding-right: 16px;
+  .bar,
+  .rise {
+    animation: none;
   }
 }
 
-@media (min-width: 600px) and (max-width: 1023px) {
-  .container-fluid {
-    padding-left: 24px;
-    padding-right: 24px;
+/* ------------------------------------------------------------- the nav */
+
+.navlink::after {
+  content: "";
+  display: block;
+  height: 3px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  margin-top: 6px;
+}
+
+.navlink:hover::after,
+.navlink[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* The page you are on stays red, hover included. */
+.navlink[aria-current="page"] {
+  color: var(--red);
+}
+
+.navlink[aria-current="page"]::after {
+  background: var(--red);
+}
+
+/* Red box, white label, navy on hover. Shared by the Résumé button, the
+   LinkedIn button and Send an email. */
+.resume {
+  background: var(--red);
+  color: var(--white);
+  transition: background 0.2s ease;
+}
+
+.resume:hover,
+.resume:focus-visible {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* --------------------------------------------------------- hover cards */
+
+.spec,
+.chan,
+.card,
+.tile {
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.spec:hover,
+.chan:hover {
+  border-color: var(--red);
+  background: var(--red-tint);
+}
+
+/* The Overview rows take the fill without the outline, so a page made almost
+   entirely of boxes does not light up a border on every pass. */
+.tile:hover {
+  background: var(--red-tint);
+}
+
+.card:hover {
+  border-color: var(--red);
+  background: var(--red-tint);
+  transform: translateY(-3px);
+}
+
+.card:hover .idx {
+  color: var(--blue);
+}
+
+.chip {
+  border: 1px solid var(--loblolly);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--red);
+  background: var(--red-tint);
+}
+
+.jump {
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.jump:hover {
+  border-color: var(--blue);
+}
+
+.ico {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+/* --------------------------------------------------------- the cursor */
+
+/* Only swap the pointer out where there is a real one to swap. */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-host {
+    cursor: none;
+  }
+  .cursor-host a,
+  .cursor-host button {
+    cursor: none;
   }
 }
 
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    margin 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
+}
+
+/* ------------------------------------------------------------- layout */
+
+.shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+}
+
+/* The left pane only sticks once there is room beside it. */
 @media (min-width: 1024px) {
-  .container-fluid {
-    padding-left: 48px;
-    padding-right: 48px;
+  .pane-sticky {
+    position: sticky;
+    top: 108px;
   }
 }

@@ -1,6 +1,5 @@
 ---
 name: Financial Modeling
 group: Business and Strategy
-order: 32
+order: 2
 ---
-

@@ -1,6 +1,5 @@
 ---
 name: R
 group: Languages and Querying
-order: 2
+order: 3
 ---
-

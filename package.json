@@ -1,22 +1,16 @@
 {
-  "name": "pw",
+  "name": "nilay-purayar",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build --content=local -c \"next build\"",
+    "build": "node scripts/clear-fetch-cache.mjs && tinacms build --content=local --skip-cloud-checks -c \"next build\"",
     "start": "next start",
     "lint": "eslint",
-    "test:responsive": "backstop test",
-    "test:reference": "backstop reference",
-    "test:approve": "backstop approve",
-    "test:report": "backstop openReport"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.19",
-    "framer-motion": "^12.23.24",
     "next": "16.0.10",
-    "next-seo": "^7.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "tinacms": "^3.15.2"
@@ -27,8 +21,6 @@
     "@types/node": "^20.19.23",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "backstopjs": "^6.3.25",
-    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "tailwindcss": "^4.1.15",

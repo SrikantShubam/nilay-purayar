@@ -20,8 +20,8 @@ Reference: https://tina.io/blog/october-tinacloud-auth-changes
 4. Deploy the updated package.json and package-lock.json. The existing build
    command regenerates the static admin using `tinacms build`.
 5. Open /admin in a fresh browser session, authenticate with GitHub, and verify
-   that both Work Section and Projects Section load. Do not change content
-   merely to test sign-in.
+   that Experience and Projects load. Do not change content merely to test
+   sign-in.
 
 The observed production sign-in redirect used client ID
 8974a0d6-b521-4052-b8aa-5401f3ecd8c1 and origin
@@ -31,6 +31,39 @@ Compare it with the intended Tina Cloud project before changing any settings.
 A local build does not verify the hosted GitHub OAuth callback. If login still
 fails after deployment, capture the failing callback's error text and check
 the project's origin and account access in Tina Cloud.
+
+## The build drops Next's fetch cache first
+
+    node scripts/clear-fetch-cache.mjs && tinacms build ...
+
+Each page fetches its content from Tina's GraphQL endpoint while prerendering.
+Next caches those responses in `.next/cache/fetch-cache`, keyed on the request,
+and the request for a page never changes: only the content behind it does. On a
+host that keeps the build cache between deploys, which Vercel does, a
+content-only commit can therefore ship the previous content. Changing French
+from Beginner to Basic reproduced this locally: the file was right and the
+built page still said Beginner.
+
+The script removes that one directory and leaves the Turbopack module cache
+beside it alone, so builds stay fast.
+
+## The build skips the cloud schema check
+
+The build command passes `--skip-cloud-checks`:
+
+    tinacms build --content=local --skip-cloud-checks -c "next build"
+
+`--content=local` already sources every page's content from the files in this
+repository at prerender time, so the deploy does not depend on Tina Cloud
+having finished indexing. Without the flag, a deploy that starts before Tina
+Cloud has reindexed a schema change fails with `ERR_CLOUD_CHECK_FAILED` even
+though the build itself would have been correct. The check only tells you that
+/admin will lag until Cloud catches up, which it does on its own.
+
+Dropping the flag is still the right move if a schema change needs confirming
+against Cloud before shipping. Run it by hand:
+
+    npx tinacms build --content=local -c "next build"
 
 ## Local verification
 
